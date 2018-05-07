@@ -1,0 +1,91 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<ck_project.Models.CLSA6>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@using (Html.BeginForm("CompanyDesignerLeadStatusTotals", "Reports", FormMethod.Get))
+{
+
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    @*<meta name="viewport" content="initial-scale=1.0">*@
+    <title>Sale Contract Management System</title>
+    <link href="http://leadmanagealpha.apphb.com/Content/bootstrap.sandstone.css" rel="stylesheet" type="text/css" />
+    <link href="http://leadmanagealpha.apphb.com/Content/Print.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="pic2" align="center"><img src="http://leadmanagealpha.apphb.com/Content/Images/proposal_pic2.png" /></div>
+
+    <table class="container" style="width:300px;padding:40px" align="right">
+        <tr>
+            <td style="padding:5px 10px;border:1px solid #666">
+                <label>From : </label>
+                @Session["dtFrom"]
+            </td>
+            <td style="padding:5px 10px;border:1px solid #666">
+                <label>To : </label>
+                @Session["dtTo"]
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <div class="header"><h2>COMPANY DESIGNER LEAD STATUS TOTALS</h2></div>
+
+    <div>
+        <table class="table table-striped">
+            <thead class="mdb-color darken-3">
+                <tr>
+                    <th>
+                        Designer
+                    </th>
+                    <th>
+                        Total Open
+                    </th>
+                    <th>
+                        Total Sold
+                    </th>
+                    <th>
+                        Total Deferred
+                    </th>
+                    <th>
+                        Total Lost price
+                    </th>
+
+                    <th>
+                        Total Lost Comp
+                    </th>
+                    <th>
+                        Total Lost Other
+                    </th>
+
+                    <th>
+                        Total
+                    </th>
+                </tr>
+            </thead>
+
+            @{
+                foreach (var prod in Model)
+                {
+                    <tr>
+                        <td>@prod.Designer</td>
+                        <td>@prod.Total_Open.ToString("0.00")</td>
+                        <td>@prod.Total_Sold.ToString("0.00")</td>
+                        <td>@prod.Total_Deferred.ToString("0.00")</td>
+                        <td>@prod.Total_Lost_Price.ToString("0.00")</td>
+                        <td>@prod.Total_Lost_Comp.ToString("0.00")</td>
+                        <td>@prod.Total_Lost_Other.ToString("0.00")</td>
+                        <td>@prod.Total.ToString("0.00")</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</body>
+</html>

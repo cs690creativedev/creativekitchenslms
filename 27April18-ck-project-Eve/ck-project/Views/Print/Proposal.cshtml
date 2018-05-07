@@ -1,0 +1,1284 @@
+﻿@model ck_project.Models.ProjectSummary
+@{
+    ViewBag.Title = "Proposal";
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Sale Contract Management System</title>
+    <link href="http://leadmanagealpha.apphb.com/Content/bootstrap.sandstone.css" rel="stylesheet" type="text/css" />
+    <link href="http://leadmanagealpha.apphb.com/Content/Print.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="pagebreak">
+        <div class="row">
+            <div class="column" style="padding-top:30px; padding-left:40px; width: 40%"><img src="http://leadmanagealpha.apphb.com/Content/Images/proposal_pic1.png" /></div>
+            <div class="column" style="width:60%; vertical-align:middle">
+                <div style="padding-top:220px; font-size:38px; padding-left:50px">CREATIVE KITCHENS</div>
+                <div style="font-size:44px; padding-left:50px">PROPOSAL</div>
+                @*    <div style="padding-top:50px; font-size:30px; padding-left:50px">with</div>
+                    @{
+                        if (Model.Customer != null)
+                        {
+                            <div style="padding-top:150px; font-size:32px; padding-left:50px">@Model.Customer.customer_firstname @Model.Customer.customer_lastname</div>
+                        }
+                        else
+                        {
+                            <div style="padding-top:150px; font-size:32px; padding-left:50px"></div>
+                        }
+
+                        if (Model.JobsiteAddress != null)
+                        {
+                            <div style="font-size:32px; padding-left:50px">@Model.JobsiteAddress.address1</div>
+                            <div style="font-size:32px; padding-left:50px">@Model.JobsiteAddress.city, @Model.JobsiteAddress.state @Model.JobsiteAddress.zipcode</div>
+                        }
+                        else
+                        {
+                            <div style="font-size:32px; padding-left:50px">&nbsp</div>
+                            <div style="font-size:32px; padding-left:50px">&nbsp</div>
+                        }
+                    }
+                *@
+                <div style="padding-top:100px; font-size:30px; padding-left:50px">@string.Format("{0:MMMM dd, yyyy}", DateTime.Now)</div>
+                <div style="padding-top:150px; font-size:16px">
+                    <table>
+                        <tr>
+                            <td style="padding-left:40px"><img src="http://leadmanagealpha.apphb.com/Content/Images/proposal_pic2.png"></td>
+                        </tr>
+                        @{
+                            if (Model.Branch != null)
+                            {
+                                foreach (var b in Model.Branch)
+                                {
+                                    <tr>
+                                        <td style="text-align:center; width:450px">@b.address.address1, @b.address.city, @b.address.state @b.address.zipcode</td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pagebreak">
+        <div align="center" class="pic2"><img src="http://leadmanagealpha.apphb.com/Content/Images/proposal_pic2.png"></div>
+        <div align="center" style="padding-bottom: 50px"><h2><b>AGREEMENT</b></h2></div>
+        <div class="row">
+            <div class="column" style="width:40%; font-size:18px" align="right">BETWEEN PURCHASER: </div>
+            <div class="column">
+                @{
+                    if (Model.Customer != null)
+                    {
+                        <div style="padding-left:5px; font-size:18px">@Model.Customer.customer_firstname @Model.Customer.customer_lastname</div>
+                    }
+                    else
+                    {
+                        <div style="padding-left:5px; font-size:18px">&nbsp</div>
+                    }
+
+                    if (Model.JobsiteAddress != null)
+                    {
+                        <div style="padding-left:5px; font-size:18px">@Model.JobsiteAddress.address1</div>
+                        <div style="padding-left:5px; font-size:18px">@Model.JobsiteAddress.city, @Model.JobsiteAddress.state @Model.JobsiteAddress.zipcode</div>
+                    }
+                    else
+                    {
+                        <div style="padding-left:5px; font-size:18px">&nbsp</div>
+                        <div style="padding-left:5px; font-size:18px">&nbsp</div>
+                    }
+                }
+            </div>
+        </div>
+        <div style="padding-top:60px; padding-bottom:40px;">
+            <div class="column" style="width:40%; font-size:18px" align="right">AND SELLER: </div>
+            <div class="column">
+                <div style="padding-left:5px; font-size:18px">Creative Kitchens Incorporated</div>
+                @{
+                    if (Model.Lead != null)
+                    {
+                        <div style="padding-left:5px; font-size:18px">@Model.Lead.branch.address.address1</div>
+                        <div style="padding-left:5px; font-size:18px">@Model.Lead.branch.address.city, @Model.Lead.branch.address.state @Model.Lead.branch.address.zipcode</div>
+                        <div style="padding-left:5px; font-size:18px">Phone: @Model.Lead.branch.phone_number</div>
+                        <div style="padding-left:5px; font-size:18px">Fax: @Model.Lead.branch.fax_number</div>
+
+                    }
+                    else
+                    {
+                        <div style="padding-left:5px; font-size:18px">&nbsp</div>
+                        <div style="padding-left:5px; font-size:18px">&nbsp</div>
+                        <div style="padding-left:5px; font-size:18px">&nbsp</div>
+                        <div style="padding-left:5px; font-size:18px">&nbsp</div>
+
+                    }
+                }
+            </div>
+
+        </div>
+        <div align="center" style="padding-bottom: 10px"><h4><b></b></h4></div>
+        <div align="center" style="padding-bottom: 10px"><h4><b></b></h4></div>
+
+        <table style="width:100%; float:left; ">
+
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr height="20px">
+                <td font-size="30px">
+                    Creative Kitchens Incorporated agrees to furnish the products and materials specified below:
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+
+
+
+
+        <table style="width:100%; float:left;">
+
+            <tr>
+                <td colspan="6" style="height:20px; border-bottom:1px solid black; font-weight:bolder">CABINETRY</td>
+            </tr>
+            @{
+                int count = 5;
+                var cabinetList = Model.ProductMapList1["CABINETRY"];
+                if (cabinetList.Count != 0)
+                {
+                    foreach (var prod in cabinetList)
+                    {
+                        <tr style="border: 1px solid white">
+                            <td class="pam_item_qty2" style="border: 1px solid white">@String.Format("{0:#,#}", prod.quantity)</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.manufacture</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.model</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.color</td>
+                            <td class="pam_item_text" width="400px" style="border: 1px solid white">@prod.Description</td>
+                            <td class="pam_item_price" style="border: 1px solid white">@String.Format("{0:#,0.00}", prod.price * prod.quantity)</td>
+                        </tr>
+                        count--;
+                    }
+                }
+
+                if (count > 0)
+                {
+                    <br />
+                }
+            }
+            <tr style="height:20px;"><td>&nbsp;</td></tr>
+            <tr>
+                <td colspan="6" style="height:20px; border-bottom: 1px solid black; font-weight:bolder">HARDWARE</td>
+
+            </tr>
+            @*  <tr>
+                    <td style="width:50px" class="pam_item_header">Qtty</td>
+                    <td style="width:50px" class="pam_item_header">Mfg.</td>
+                    <td style="width:100px" class="pam_item_header">Model</td>
+                    <td style="width:200px" class="pam_item_header">Description</td>
+                    <td style="width:150px" class="pam_item_header">Location</td>
+                    <td style="width:150px" class="pam_item_header">Price</td>
+                </tr>*@
+            @{
+                count = 5;
+                var hardwareList = Model.ProductMapList1["HARDWARE"];
+                if (hardwareList.Count != 0)
+                {
+                    foreach (var prod in hardwareList)
+                    {
+                        <tr style="border: 1px solid white">
+                            <td class="pam_item_qty2" style="border: 1px solid white">@String.Format("{0:#,#}", prod.quantity)</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.manufacture</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.model</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.color</td>
+                            <td class="pam_item_text" width="400px" style="border: 1px solid white">@prod.Description</td>
+                            <td class="pam_item_price" style="border: 1px solid white">@String.Format("{0:#,0.00}", prod.price * prod.quantity)</td>
+                        </tr>
+                        count--;
+                    }
+                }
+
+                if (count > 0)
+                {
+                    <br />
+                }
+            }
+
+            @{
+                var ventiList = Model.ProductMapList1["VENTILATION/LIGHTING/ENCLOSURES"];
+                if (ventiList.Count != 0)
+                {
+                    <tr style="height:20px;"><td>&nbsp;</td></tr>
+                    <tr>
+                        <td colspan="6" style="height:20px; border-bottom: 1px solid black; font-weight:bolder">VENTILATION/LIGHTING/ENCLOSURES</td>
+                        @*     <td style="width:150px" class="pam_total_col">TOTAL $</td>
+                            <td style="width:150px" class="pam_totalprice_col">
+                                @{
+                                    if (Model.ProductTotalMap != null)
+                                    {
+                                        double harTotal = Model.ProductTotalMap["HARDWARE"];
+                                        if (harTotal != 0)
+                                        {
+                                            @String.Format("{0:#,0.00}", harTotal)
+                                        }
+                                    }
+                                }
+                            </td>*@
+                    </tr>
+                    @*  <tr>
+                            <td style="width:50px" class="pam_item_header">Qty</td>
+                            <td style="width:50px" class="pam_item_header">Mfg.</td>
+                            <td style="width:100px" class="pam_item_header">Model</td>
+                            <td style="width:200px" class="pam_item_header">Color</td>
+                            <td style="width:150px" class="pam_item_header">Description</td>
+                            <td style="width:150px" class="pam_item_header">Price</td>
+                        </tr> *@
+
+                    count = 5;
+                    foreach (var prod in ventiList)
+                    {
+                        <tr style="border: 1px solid white">
+                            <td class="pam_item_qty2" style="border: 1px solid white">@String.Format("{0:#,#}", prod.quantity)</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.manufacture</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.model</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.color</td>
+                            <td class="pam_item_text" width="400px" style="border: 1px solid white">@prod.Description</td>
+                            <td class="pam_item_price" style="border: 1px solid white">@String.Format("{0:#,0.00}", prod.price * prod.quantity)</td>
+                        </tr>
+                        count--;
+                    }
+
+                    if (count > 0)
+                    {
+                        <br />
+                    }
+                    @* <tr>
+
+                        </tr>*@
+                    <tr>
+                    <tr style="height:20px;"><td>&nbsp;</td></tr>
+                    <td colspan="6" style="height:20px; border-bottom: 1px solid black;font-weight:bolder">OWNER PROVIDED PRODUCT</td>
+                    @*    <td style="width:150px" class="pam_total_col">TOTAL $</td>
+                                                <td style="width:150px" class="pam_totalprice_col">
+                                                    @{
+                                    if (Model.ProductTotalMap != null)
+                                    {
+                                        double appTotal = Model.ProductTotalMap["VENTILATION/LIGHTING/ENCLOSURES"];
+                                        if (appTotal != 0)
+                                        {
+                                            @appTotal
+                        }
+                        }
+                                                    }
+                                                </td>*@
+                    </tr>
+                }
+                else
+                {
+                    <tr style="height:20px;"><td>&nbsp;</td></tr>
+                    <tr>
+                        <td colspan="6" style="height:20px; border-bottom: 1px solid black;font-weight:bolder">APPLIANCES</td>
+                        @*  <td style="width:150px" class="pam_total_col">TOTAL $</td>
+                            <td style="width:150px" class="pam_totalprice_col">
+                                @{
+                                    if (Model.ProductTotalMap != null)
+                                    {
+                                        double harTotal = Model.ProductTotalMap["HARDWARE"];
+                                        if (harTotal != 0)
+                                        {
+                                            @String.Format("{0:#,0.00}", harTotal)
+                                        }
+                                    }
+                                }
+                            </td>*@
+                    </tr>
+                    @*  <tr>
+                            <td style="width:50px" class="pam_item_header">Qty</td>
+                            <td style="width:50px" class="pam_item_header">Mfg.</td>
+                            <td style="width:100px" class="pam_item_header">Model</td>
+                            <td style="width:200px" class="pam_item_header">Color</td>
+                            <td style="width:150px" class="pam_item_header">Description</td>
+                            <td style="width:150px" class="pam_item_header">Price</td>
+                        </tr>*@
+
+                    count = 5;
+                    var appList = Model.ProductMapList1["APPLIANCES"];
+                    if (appList.Count != 0)
+                    {
+                        foreach (var prod in appList)
+                        {
+                            <tr style="border: 1px solid white">
+                                <td class="pam_item_qty2" style="border: 1px solid white">@String.Format("{0:#,#}", prod.quantity)</td>
+                                <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.manufacture</td>
+                                <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.model</td>
+                                <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.color</td>
+                                <td class="pam_item_text" width="400px" style="border: 1px solid white">@prod.Description</td>
+                                <td class="pam_item_price" style="border: 1px solid white">@String.Format("{0:#,0.00}", prod.price * prod.quantity)</td>
+                            </tr>
+                            count--;
+                        }
+                    }
+
+                    if (count > 0)
+                    {
+                        <br />
+                    }
+
+
+                    @*       <tr>
+                                                    <td style="width:150px" class="pam_total_col">TOTAL $</td>
+                                                    <td style="width:150px" class="pam_totalprice_col">
+                                                        @{
+                                    if (Model.ProductTotalMap != null)
+                                    {
+                                        double appTotal = Model.ProductTotalMap["APPLIANCES"];
+                                        if (appTotal != 0)
+                                        {
+                                                @String.Format("{0:#,0.00}", appTotal)
+                        }
+                        }
+                                                        }
+                                                    </td>
+                                                </tr>*@
+                    <tr style="height:20px;"><td>&nbsp;</td></tr>
+                    <tr>
+                        <td colspan="6" style="height:20px; border-bottom: 1px solid black" ;font-weight:bolder>OWNER PROVIDED PRODUCT</td>
+
+                    </tr>
+                }
+            }
+
+            @*<tr>
+                    <td style="width:50px" class="pam_item_header">Qty</td>
+                    <td colspan="4" style="width:700px" class="pam_item_header">Description</td>
+                    <td style="width:150px" class="pam_item_header">Price</td>
+                </tr>*@
+            @{
+                count = 5;
+                var ownerList = Model.ProductMapList1["OWNER PROVIDED PRODUCT"];
+                if (ownerList.Count != 0)
+                {
+                    foreach (var prod in ownerList)
+                    {
+                        <tr style="border: 1px solid white">
+                            <td class="pam_item_qty2" style="border: 1px solid white">@String.Format("{0:#,#}", prod.quantity)</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.manufacture</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.model</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.color</td>
+                            <td class="pam_item_text" width="400px" style="border: 1px solid white">@prod.Description</td>
+                            <td class="pam_item_price" style="border: 1px solid white">@String.Format("{0:#,0.00}", prod.price * prod.quantity)</td>
+                        </tr>
+                        count--;
+                    }
+                }
+
+                if (count > 0)
+                {
+                    <br />
+                }
+            }
+
+            @{
+                var miscList = Model.ProductMapList1["MISC ITEMS"];
+                if (miscList.Count != 0)
+                {
+                    <tr style="height:20px;"><td>&nbsp;</td></tr>
+
+                    <tr>
+                        <td colspan="6" style="height:20px; border-bottom: 1px solid black;font-weight:bolder">MISC ITEMS</td>
+                        @*  <td style="width:150px" class="pam_total_col">TOTAL $</td>
+                            <td style="width:150px" class="pam_totalprice_col">
+                                @{
+                                    if (Model.ProductTotalMap != null)
+                                    {
+                                        double ownTotal = Model.ProductTotalMap["OWNER PROVIDED PRODUCT"];
+                                        if (ownTotal != 0)
+                                        {
+                                            @String.Format("{0:#,0.00}", ownTotal)
+                                        }
+                                    }
+                                }
+                            </td>*@
+                    </tr>
+                    @*    <tr>
+                            <td style="width:50px" class="pam_item_header">Qty</td>
+                            <td style="width:50px" class="pam_item_header">Mfg.</td>
+                            <td colspan="3" style="width:350px" class="pam_item_header">Model/Finish/Description</td>
+                            <td style="width:150px" class="pam_item_header">Price</td>
+                        </tr> *@
+
+                    count = 5;
+                    foreach (var prod in miscList)
+                    {
+                        <tr style="border: 1px solid white">
+
+
+                            <td class="pam_item_qty2" style="border: 1px solid white">@String.Format("{0:#,#}", prod.quantity)</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.manufacture</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white"></td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white"></td>
+                            <td class="pam_item_text" width="400px" style="border: 1px solid white">
+                                @{
+                                    if (prod.model != null)
+                                    {
+                                        @prod.model
+                                    }
+
+                                    if (prod.color != null)
+                                    {
+                                        @:&#47;@prod.color
+                                    }
+
+                                    if (prod.Description != null)
+                                    {
+                                        @:&#47;@prod.Description
+                }
+                                }
+                            </td>
+                            <td class="pam_item_price" style="border: 1px solid white">@String.Format("{0:#,0.00}", prod.price * prod.quantity)</td>
+
+
+
+
+
+
+
+
+                        </tr>
+                        count--;
+                    }
+
+                    if (count > 0)
+                    {
+                        <br />
+                    }
+                    <tr>
+                        <td colspan="6" style="height:20px; border-left: 1px solid white"></td>
+                        @* <td style="width:150px" class="pam_total_col">TOTAL $</td>
+                            <td style="width:150px" class="pam_totalprice_col">
+                                @{
+                                    if (Model.ProductTotalMap != null)
+                                    {
+                                        double accTotal = Model.ProductTotalMap["MISC ITEMS"];
+                                        if (accTotal != 0)
+                                        {
+                                            @String.Format("{0:#,0.00}", accTotal)
+                                        }
+                                    }
+                                }
+                            </td>*@
+                    </tr>
+                }
+                else
+                {
+                    <tr style="height:20px;"><td>&nbsp;</td></tr>
+                    <tr>
+                        <td colspan="6" style="height:20px; border-bottom: 1px solid black;font-weight:bolder">ACCESSORIES & MIRRORS</td>
+                        @*      <td style="width:150px" class="pam_total_col">TOTAL $</td>
+                            <td style="width:150px" class="pam_totalprice_col">
+                                @{
+                                    if (Model.ProductTotalMap != null)
+                                    {
+                                        double ownTotal = Model.ProductTotalMap["OWNER PROVIDED PRODUCT"];
+                                        if (ownTotal != 0)
+                                        {
+                                            @String.Format("{0:#,0.00}", ownTotal)
+                                        }
+                                    }
+                                }
+                            </td>*@
+                    </tr>
+                    @*   <tr>
+                            <td style="width:50px" class="pam_item_header">Qty</td>
+                            <td style="width:50px" class="pam_item_header">Mfg.</td>
+                            <td colspan="3" style="width:350px" class="pam_item_header">Model/Finish/Description</td>
+                            <td style="width:150px" class="pam_item_header">Price</td>
+                        </tr> *@
+
+                    count = 5;
+                    var accList = Model.ProductMapList1["ACCESSORIES & MIRRORS"];
+                    if (accList.Count != 0)
+                    {
+                        foreach (var prod in accList)
+                        {
+                            <tr style="border: 1px solid white">
+                                <td class="pam_item_qty2" style="border: 1px solid white">@String.Format("{0:#,#}", prod.quantity)</td>
+                                <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.manufacture</td>
+                                <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.model</td>
+                                <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.color</td>
+                                <td class="pam_item_text" width="400px" style="border: 1px solid white">@prod.Description</td>
+                                <td class="pam_item_price" style="border: 1px solid white">@String.Format("{0:#,0.00}", prod.price * prod.quantity)</td>
+                            </tr>
+                            count--;
+                        }
+                    }
+
+                    if (count > 0)
+                    {
+                        <br />
+                    }
+                    <tr>
+                        <td colspan="6" style="height:20px; border-left: 1px solid white"></td>
+                        @*  <td style="width:150px" class="pam_total_col">TOTAL $</td>
+                            <td style="width:150px" class="pam_totalprice_col">
+                                @{
+                                    if (Model.ProductTotalMap != null)
+                                    {
+                                        double accTotal = Model.ProductTotalMap["ACCESSORIES & MIRRORS"];
+                                        if (accTotal != 0)
+                                        {
+                                            @String.Format("{0:#,0.00}", accTotal)
+                                        }
+                                    }
+                                }
+                            </td>*@
+                    </tr>
+                }
+            }
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <table style="width:100%; float:left">
+
+            <tr style="border-top: 1px solid white">
+                <td colspan="6" style="height:20px; border-bottom: 1px solid black;font-weight:bolder">COUNTERS</td>
+                @* <td style="width:150px" class="pam_item_header">Location</td>
+                    <td style="width:150px" class="pam_item_header">Price</td>*@
+            </tr>
+            @{
+                count = 5;
+                var counterList = Model.ProductMapList2["COUNTERS"];
+                if (counterList.Count != 0)
+                {
+                    foreach (var prod in counterList)
+                    {
+                        <tr style="border: 1px solid white">
+                            <td class="pam_item_qty2" style="border: 1px solid white">@String.Format("{0:#,#}", prod.quantity)</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.manufacture</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.model</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.color</td>
+                            <td class="pam_item_text" width="400px" style="border: 1px solid white">@prod.Description</td>
+                            <td class="pam_item_price" style="border: 1px solid white">@String.Format("{0:#,0.00}", prod.price * prod.quantity)</td>
+                        </tr>
+                        count--;
+                    }
+                }
+
+                if (count > 0)
+                {
+                    <br />
+                }
+            }
+
+
+            @{
+                var plumbList = Model.ProductMapList2["PLUMBING FIXTURES, FAUCETS & FITTINGS"];
+                if (plumbList.Count != 0)
+                {
+                    <tr style="height:20px;"><td>&nbsp;</td></tr>
+                    <tr>
+                        <td colspan="6" style="height:20px; border-bottom: 1px solid black;font-weight:bolder">PLUMBING FIXTURES, FAUCETS & FITTINGS</td>
+                        @* <td style="width:150px" class="pam_total_col">TOTAL $</td>
+                            <td style="width:150px" class="pam_totalprice_col">
+                                @{
+                                    if (Model.ProductTotalMap != null)
+                                    {
+                                        double couTotal = Model.ProductTotalMap["COUNTERS"];
+                                        if (couTotal != 0)
+                                        {
+                                            @String.Format("{0:#,0.00}", couTotal)
+                                        }
+                                    }
+                                }
+                            </td>*@
+                    </tr>
+                    @* <tr>
+                            <td style="width:50px" class="pam_item_header2">Qty</td>
+                            <td style="width:50px" class="pam_item_header">Mfg.</td>
+                            <td style="width:100px" class="pam_item_header">Model</td>
+                            <td style="width:200px" class="pam_item_header">Color</td>
+                            <td style="width:150px" class="pam_item_header">Description</td>
+                            <td style="width:150px" class="pam_item_header">Price</td>
+                        </tr>*@
+
+                    count = 5;
+                    foreach (var prod in plumbList)
+                    {
+                        <tr style="border: 1px solid white">
+                            <td class="pam_item_qty2" style="border: 1px solid white">@String.Format("{0:#,#}", prod.quantity)</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.manufacture</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.model</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.color</td>
+                            <td class="pam_item_text" width="400px" style="border: 1px solid white">@prod.Description</td>
+                            <td class="pam_item_price" style="border: 1px solid white">@String.Format("{0:#,0.00}", prod.price * prod.quantity)</td>
+                        </tr>
+                        count--;
+                    }
+
+                    if (count > 0)
+                    {
+                        <br />
+                    }
+                    <tr style="height:20px;"><td>&nbsp;</td></tr>
+                    <tr>
+                        <td colspan="6" style="height:20px; border-bottom: 1px solid black;font-weight:bolder">DECORATIVE SURFACES</td>
+                        @*     <td style="width:150px" class="pam_total_col">TOTAL $</td>
+                            <td style="width:150px" class="pam_totalprice_col">
+                                @{
+                                    if (Model.ProductTotalMap != null)
+                                    {
+                                        double sinTotal = Model.ProductTotalMap["PLUMBING FIXTURES, FAUCETS & FITTINGS"];
+                                        if (sinTotal != 0)
+                                        {
+                                            @String.Format("{0:#,0.00}", sinTotal)
+                                        }
+                                    }
+                                }
+                            </td>*@
+                    </tr>
+                }
+                else
+                {
+                    <tr style="height:20px;"><td>&nbsp;</td></tr>
+                    <tr>
+                        <td colspan="6" style="height:20px; border-bottom: 1px solid black;font-weight:bolder">SINK, STRAINER, FAUCET, FITTINGS</td>
+                        @*  <td style="width:150px" class="pam_total_col">TOTAL $</td>
+                            <td style="width:150px" class="pam_totalprice_col">
+                                @{
+                                    if (Model.ProductTotalMap != null)
+                                    {
+                                        double couTotal = Model.ProductTotalMap["COUNTERS"];
+                                        if (couTotal != 0)
+                                        {
+                                            @String.Format("{0:#,0.00}", couTotal)
+                                        }
+                                    }
+                                }
+                            </td>*@
+                    </tr>
+                    @* <tr>
+                            <td style="width:50px" class="pam_item_header2">Qty</td>
+                            <td style="width:50px" class="pam_item_header">Mfg.</td>
+                            <td style="width:100px" class="pam_item_header">Model</td>
+                            <td style="width:200px" class="pam_item_header">Color</td>
+                            <td style="width:150px" class="pam_item_header">Description</td>
+                            <td style="width:150px" class="pam_item_header">Price</td>
+                        </tr>*@
+
+                    count = 5;
+                    var sinkList = Model.ProductMapList2["SINK, STRAINER, FAUCET, FITTINGS"];
+                    if (sinkList.Count != 0)
+                    {
+                        foreach (var prod in sinkList)
+                        {
+                            <tr style="border: 1px solid white">
+                                <td class="pam_item_qty2" style="border: 1px solid white">@String.Format("{0:#,#}", prod.quantity)</td>
+                                <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.manufacture</td>
+                                <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.model</td>
+                                <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.color</td>
+                                <td class="pam_item_text" width="400px" style="border: 1px solid white">@prod.Description</td>
+                                <td class="pam_item_price" style="border: 1px solid white">@String.Format("{0:#,0.00}", prod.price * prod.quantity)</td>
+                            </tr>
+                            count--;
+                        }
+                    }
+
+                    if (count > 0)
+                    {
+                        <br />
+                    }
+                    <tr style="height:20px;"><td>&nbsp;</td></tr>
+                    <tr>
+                        <td colspan="6" style="height:20px; border-bottom: 1px solid black;font-weight:bolder">DECORATIVE SURFACES</td>
+                        @*  <td style="width:150px" class="pam_total_col">TOTAL $</td>
+                            <td style="width:150px" class="pam_totalprice_col">
+                                @{
+                                    if (Model.ProductTotalMap != null)
+                                    {
+                                        double sinTotal = Model.ProductTotalMap["SINK, STRAINER, FAUCET, FITTINGS"];
+                                        if (sinTotal != 0)
+                                        {
+                                            @String.Format("{0:#,0.00}", sinTotal)
+                                        }
+                                    }
+                                }
+                            </td>*@
+                    </tr>
+                }
+            }
+
+            @*  <tr>
+                    <td style="width:50px" class="pam_item_header2">Qty</td>
+                    <td colspan="2" style="width:150px" class="pam_item_header">Source</td>
+                    <td colspan="2" style="width:350px" class="pam_item_header">Description</td>
+                    <td style="width:150px" class="pam_item_header">Price</td>
+                </tr> *@
+            @{
+                count = 5;
+                var decoList = Model.ProductMapList2["DECORATIVE SURFACES"];
+                if (decoList.Count != 0)
+                {
+                    foreach (var prod in decoList)
+                    {
+                        <tr style="border: 1px solid white">
+                            <td class="pam_item_qty2" style="border: 1px solid white">@String.Format("{0:#,#}", prod.quantity)</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.manufacture</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.model</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.color</td>
+                            <td class="pam_item_text" width="400px" style="border: 1px solid white">@prod.Description</td>
+                            <td class="pam_item_price" style="border: 1px solid white">@String.Format("{0:#,0.00}", prod.price * prod.quantity)</td>
+                        </tr>
+                        count--;
+                    }
+                }
+
+                if (count > 0)
+                {
+                    <br />
+                }
+            }
+
+            @{
+                var discountList = Model.ProductMapList2["DISCOUNT OR ADJUSTMENT"];
+                if (discountList.Count != 0)
+                {
+                    <tr style="height:20px;"><td>&nbsp;</td></tr>
+                    <tr>
+                        <td colspan="6" style="height:20px; border-bottom: 1px solid black;font-weight:bolder">DISCOUNT OR ADJUSTMENT</td>
+                        @*   <td style="width:150px" class="pam_total_col">TOTAL $</td>
+                            <td style="width:150px" class="pam_totalprice_col">
+                                @{
+                                    if (Model.ProductTotalMap != null)
+                                    {
+                                        double decTotal = Model.ProductTotalMap["DECORATIVE SURFACES"];
+                                        if (decTotal != 0)
+                                        {
+                                            @String.Format("{0:#,0.00}", decTotal)
+                                        }
+                                    }
+                                }
+                            </td>*@
+                    </tr>
+                    @* <tr>
+                            <td colspan="5" style="width:350px" class="pam_item_header2">Description</td>
+                            <td style="width:150px" class="pam_item_header">Price</td>
+                        </tr>*@
+
+                    count = 5;
+                    foreach (var prod in discountList)
+                    {
+                        <tr style="border: 1px solid white">
+                            <td class="pam_item_qty2" style="border: 1px solid white">@String.Format("{0:#,#}", prod.quantity)</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.manufacture</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.model</td>
+                            <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.color</td>
+                            <td class="pam_item_text" width="400px" style="border: 1px solid white">@prod.Description</td>
+                            <td class="pam_item_price" style="border: 1px solid white">@String.Format("{0:#,0.00}", prod.price * prod.quantity)</td>
+                        </tr>
+                        count--;
+                    }
+
+                    if (count > 0)
+                    {
+                        <br />
+                    }
+
+                    @*  <tr>
+                            <td colspan="4" style="width:400px; border-right: 1px solid black"></td>
+                            <td style="width:150px" class="pam_total_col">TOTAL $</td>
+                            <td style="width:150px" class="pam_totalprice_col">
+                                @{
+                                    if (Model.ProductTotalMap != null)
+                                    {
+                                        double addTotal = Model.ProductTotalMap["DISCOUNT OR ADJUSTMENT"];
+                                        if (addTotal != 0)
+                                        {
+                                            @String.Format("{0:#,0.00}", addTotal)
+                                        }
+                                    }
+                                }
+                            </td>
+                        </tr>*@
+                }
+                else
+                {
+                    <tr style="height:20px;"><td>&nbsp;</td></tr>
+                    <tr>
+                        <td colspan="6" style="height:20px; border-bottom: 1px solid black;font-weight:bolder">ADDITIONAL ITEMS</td>
+                        @*  <td style="width:150px" class="pam_total_col">TOTAL $</td>
+                            <td style="width:150px" class="pam_totalprice_col">
+                                @{
+                                    if (Model.ProductTotalMap != null)
+                                    {
+                                        double decTotal = Model.ProductTotalMap["DECORATIVE SURFACES"];
+                                        if (decTotal != 0)
+                                        {
+                                            @String.Format("{0:#,0.00}", decTotal)
+                                        }
+                                    }
+                                }
+                            </td>*@
+                    </tr>
+                    @* <tr>
+                            <td colspan="5" style="width:350px" class="pam_item_header2">Description</td>
+                            <td style="width:150px" class="pam_item_header">Price</td>
+                        </tr>*@
+
+                    count = 5;
+                    var additionaList = Model.ProductMapList2["ADDITIONAL ITEMS"];
+                    if (additionaList.Count != 0)
+                    {
+                        foreach (var prod in additionaList)
+                        {
+                            <tr style="border: 1px solid white">
+                                <td class="pam_item_qty2" style="border: 1px solid white">@String.Format("{0:#,#}", prod.quantity)</td>
+                                <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.manufacture</td>
+                                <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.model</td>
+                                <td class="pam_item_text" width="150px" style="border: 1px solid white">@prod.color</td>
+                                <td class="pam_item_text" width="400px" style="border: 1px solid white">@prod.Description</td>
+                                <td class="pam_item_price" style="border: 1px solid white">@String.Format("{0:#,0.00}", prod.price * prod.quantity)</td>
+                            </tr>
+                            count--;
+                        }
+                    }
+
+                    if (count > 0)
+                    {
+                        <br />
+                    }
+
+                    @*  <tr>
+                            <td colspan="4" style="width:400px; border-right: 1px solid black; border-left: 1px solid black"></td>
+                            <td style="width:150px" class="pam_total_col">TOTAL $</td>
+                            <td style="width:150px" class="pam_totalprice_col">
+                                @{
+                                    if (Model.ProductTotalMap != null)
+                                    {
+                                        double addTotal = Model.ProductTotalMap["ADDITIONAL ITEMS"];
+                                        if (addTotal != 0)
+                                        {
+                                            @String.Format("{0:#,0.00}", addTotal)
+                                        }
+                                    }
+                                }
+                            </td>
+                        </tr>*@
+                }
+            }
+
+        </table>
+        <br>
+        <div style="padding-bottom: 10px" align="right">
+            <h4>
+                <b>
+                    Product & Material Total:   @{
+                        if (Model.TotalCost != null)
+                        {
+                            @String.Format("{0:#,0.00}", Model.TotalCost.product_cost)
+                        }
+                    }
+                </b>
+            </h4>
+        </div>
+
+    </div>
+    <div class="pagebreak">
+        <div style="padding-top:50px">
+            <p class="wrapper" font-size="30px">
+                <br><br><br><br>Creative Kitchens Incorporated also agrees to provide  the labor and materials needed to complete the installation tasks specified below:
+            </p>
+        </div>
+        <table style="margin-left:3%">
+            @{
+                if (Model.Lead != null && Model.Lead.installations != null)
+                {
+                    foreach (var item in Model.Lead.installations)
+                    {
+                        foreach (var task in item.tasks_installation)
+                        {
+                            <tr>
+                                <td>@task.task.task_name</td>
+                            </tr>
+                        }
+                    }
+                }
+            }
+        </table>
+
+
+
+
+
+
+        <div style="padding-bottom: 10px" align="right">
+            <h4>
+                <b>
+                    Installation, Labor & Material, Related Taxes, Permits & Fees:  @{
+                        double cal;
+                        if (Model.TotalCost != null)
+                        {
+                            cal = (double)Model.TotalCost.total_cost1 - (double)Model.TotalCost.product_cost;
+                            @String.Format("{0:#,0.00}", cal)
+                        }
+                    }
+                </b>
+            </h4>
+        </div>
+
+    </div>
+
+
+    <div class="pagebreak">
+        <div style="padding-top:50px">
+            <p class="wrapper">
+                This agreement includes the terms and provisions as set forth herein.
+            </p>
+        </div>
+        <div align="center" style="padding-bottom: 10px"><h2><b>Please read and sign / initial where indicated.</b></h2></div>
+        <div style="padding-top:30px">
+            <p class="wrapper">
+                1. Purchaser may not change the drawings, plans, specifications, or items specified unless agreed to by Creative Kitchens in writing.
+                Creative Kitchens is not required to accept any such change to this Agreement. Should Purchaser request any changes or extra work,
+                Creative Kitchens shall determine the cost thereof and such work will only be included as part of this Agreement pursuant to a
+                written change to this Agreement signed by both parties. The Purchaser shall pay in advance to Creative Kitchens, the total cost of
+                each change order, which amounts are non-refundable to Purchaser.
+            </p>
+        </div>
+        <div style="padding-top:30px">
+            <p class="wrapper">
+                2. Upon completion of the work specified and payment in full by the Purchaser, Creative Kitchens shall deliver and assign to
+                Purchaser, without recourse, all manufacturers, installers, and suppliers warranties, if any, covering such material. AS TO SUCH
+                MATERIALS, CREATIVE KITCHENS NEITHER MAKES OR ADOPTS ANY SUCH MANUFACTURERS, INSTALLERS, OR SUPPLIERS WARRANTY AND SPECIFICALLY
+                EXCLUDES AND DISCLAIMS ANY EXPRESS OR IMPLIED WARRANTIES OF ANY NATURE RELATING THERETO, INCLUDING ANY IMPLIED WARRANTY OF
+                MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+            </p>
+        </div>
+        <div style="padding-top:30px">
+            <p class="wrapper">
+                3. The Purchaser agrees to accept delivery of the product or products when ready. The risk of loss, as to damage or destruction, shall
+                be upon the Purchaser upon the delivery and receipt of the product(s).
+            </p>
+        </div>
+        <div style="padding-top:30px">
+            <p class="wrapper">
+                4. The Purchaser understands that the products described are specially designed and custom built and that Creative Kitchens takes
+                immediate steps upon execution of this Agreement to design, order and construct those items set forth herein. Accordingly, this
+                Agreement is not subject to cancellation by the Purchaser for any reason. In the event that Purchaser attempts to cancel this
+                Agreement or otherwise defaults in the performance of Purchaser¡¯s obligations hereunder, Creative Kitchens may, at Creative
+                Kitchens¡¯ option, cancel this Agreement and retain as liquidated damages, and not as a penalty, all amounts paid by Purchaser.
+                Alternatively, Creative Kitchens shall have the right to pursue any legal and equitable remedies available to it, including specific
+                performance. Notwithstanding anything to the contrary set forth above, in the event of Purchaser¡¯s default, Creative Kitchens shall
+                have the right to stop performance hereunder until such time as Purchaser cures the default.
+            </p>
+        </div>
+        <div style="padding-top:30px">
+            <p class="wrapper">
+                5. No installation, plumbing, electrical, flooring, decorating or other construction work is to be provided unless specifically set forth
+                herein. In the event Creative Kitchens is to perform the installation, it is understood that the price agreed upon herein does not
+                include the possible expense entailed in coping with hidden or unknown contingencies found at the job site. In the event such
+                contingencies arise and Creative Kitchens is required to furnish labor or materials or otherwise perform work not provided for or
+                contemplated by Creative Kitchens, the actual costs of materials and labor plus 35% thereof will be paid for by the Purchaser.
+                Contingencies include, but are not limited to, the following: inability to reuse existing water, vent, and waste pipes; air shafts, ducts,
+                grilles, louvers and registers; the relocation of concealed pipes, risers, wiring or conduits, the presence of which cannot be
+                determined until the work has started; or imperfections, rotting or decay in the structure or parts thereof necessitating replacement.
+            </p>
+        </div>
+        <div style="padding-top:30px">
+            <p class="wrapper">
+                6. Title to the item sold pursuant to this Agreement shall not pass to the Purchaser until the full price as set forth in this Agreement is
+                paid to Creative Kitchens.
+            </p>
+        </div>
+        <div style="padding-top:30px">
+            <p class="wrapper">
+                7. Delays in payment shall be subject to interest charges of 18% per annum, and in no event higher than the interest rate provided
+                by law. If Creative Kitchens is required to engage the services of a collection agency or an attorney, the Purchaser agrees to
+                reimburse Creative Kitchens for any amounts expended in order to collect the unpaid balance, including reasonable attorneys¡¯ fees.
+            </p>
+        </div>
+
+        <div style="padding-top:30px">
+            <p class="wrapper">
+                8. Creative Kitchens retains the right, upon breach of this Agreement by the Purchaser, to sell those items in Creative Kitchens¡¯
+                possession. In effecting any resale on breach of this Agreement by the Purchaser, Creative Kitchens shall be deemed to act in the
+                capacity of agent for the Purchaser. The purchaser shall be liable for any net deficiency on resale, plus the costs and expenses
+                incurred in reselling the items.
+            </p>
+        </div>
+    </div>
+    <div class="pagebreak">
+        <div style="padding-top:7%">
+            <p class="wrapper">
+                9. Creative Kitchens agrees that it will perform this contract in conformity with customary industry practices. The Purchaser agrees
+                that any claim for adjustment shall not be reason or cause for failure to make payment of the purchase price in full. This Agreement
+                shall be governed by the laws of the State of West Virginia. Any unresolved controversy or claim arising from or under this contract
+                shall be settled by binding arbitration in accordance with the rules of the American Arbitration Association in the United States and
+                judgment upon the award rendered may be entered in any court of competent jurisdiction.
+            </p>
+        </div>
+        <div style="padding-top:30px">
+            <p class="wrapper">
+                10. Creative Kitchens anticipates that the delivery date or the date upon which the installation, if appropriate, is to begin may change.
+                The Purchaser understands that these dates, when given, shall be deemed approximate, and performance is subject to delays caused by, but not limited to,
+                strikes, fires, availability of the product at the time of delivery, acts of God, completion of prior job, and/or other reasons not under the reasonable
+                control of Creative Kitchens. In the event delays do occur, Creative Kitchens shall give timely notice explaining the reasons for the delay along with
+                the new anticipated delivery, installation or completion dates to the Purchaser.
+            </p>
+        </div>
+        <div style="padding-top:30px">
+            <p class="wrapper">
+                11. This Agreement shall be binding upon and inure to the benefit of the parties, their heirs, personal representatives, successors
+                and assigns, providing however that Purchaser shall not have the right to assign the benefit of this Agreement without the express
+                consent of Creative Kitchens. Any notice required or permitted to be given under this Agreement shall be in writing and be deemed
+                given: (a) if by hand delivery, upon receipt thereof, or (b) if by mail, three (3) days after deposit in the U.S. mail, sent by registered or
+                certified mail, return receipt requested, postage prepaid, delivered or addressed to the addresses set forth herein, or to such other
+                address as provided in advance by written notice to the other party.
+            </p>
+        </div>
+        <div style="padding-top:30px">
+            <p class="wrapper">
+                12. This Agreement sets forth the entire agreement between the parties and any and all prior agreements, warranties or
+                representations made by either party are superseded by this Agreement. If any provision of this Agreement is declared invalid or
+                unenforceable by any tribunal, the remaining provisions of the Agreement shall not be affected thereby. All changes in this
+                Agreement shall be made by a separate document and executed by both parties. No agent of Creative Kitchens, unless authorized in
+                writing by Creative Kitchens, has any authority to waive, alter, or enlarge this contract, or to make any new or substituted or different
+                contracts, representations, or warranties.
+            </p>
+        </div>
+        <div style="padding-top:30px; padding-bottom:100px">
+            <p class="wrapper">
+                13. West Virginia State Law, as set forth in Chapter 21, Article 11A of the West Virginia Code, contains important requirements you
+                must follow before you may file a lawsuit for defective construction against the contractor who made residential improvements to
+                your property. At least ninety days before you file your lawsuit, you must deliver to the contractor a written notice of an construction
+                conditions you allege are defective and provide your contractor and any subcontractors, suppliers or design professionals the
+                opportunity to make an offer to repair or pay for the defects.
+            </p>
+        </div>
+
+    </div>
+    <div class="pagebreak">
+        <div align="center" class="pic2"><img src="http://leadmanagealpha.apphb.com/Content/Images/proposal_pic2.png"></div>
+        <div align="center" style="padding-bottom: 10px"><h2><b>AGREEMENT OF TERMS</b></h2></div>
+        <div align="center" style="padding-bottom: 10px"><h4>between</h4></div>
+        <table>
+            <tr>
+                <td style="width:900px">
+                    Purchaser
+                </td>
+                <td style="width:900px" align="center"></td>
+                <td style="width:900px" align="right">Seller</td>
+
+            </tr>
+            <tr>
+                <td style="width:900px">
+                    <h4>
+                        <b>
+                            @{
+                                if (Model.Customer != null)
+                                {
+                                    @Model.Customer.customer_firstname@:&nbsp;@Model.Customer.customer_lastname
+                                }
+                            }
+                        </b>
+                    </h4>
+                </td>
+                <td style="width:900px" align="center">and</td>
+                <td style="width:900px" align="right"><h4><b>Creative Kitchens Incorporated</b></h4></td>
+
+            </tr>
+            <tr>
+                <td>
+                    @{
+                        if (Model.JobsiteAddress != null)
+                        {
+                            @Model.JobsiteAddress.address1
+                        }
+                    }
+                </td>
+                <td style="width:900px" align="center"></td>
+                <td align="right">
+                    @{
+                        if (Model.Lead != null)
+                        {
+                            @Model.Lead.branch.address.address1
+                        }
+                    }
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    @{
+                        if (Model.JobsiteAddress != null)
+                        {
+                            @Model.JobsiteAddress.city@:&#44;&nbsp;@Model.JobsiteAddress.state&nbsp;@Model.JobsiteAddress.zipcode
+                        }
+                    }
+                </td>
+                <td style="width:900px" align="center"></td>
+                <td align="right">
+                    @{
+                        if (Model.Lead != null)
+                        {
+                            @Model.Lead.branch.address.city@:&#44;&nbsp;@Model.Lead.branch.address.state&nbsp;@Model.Lead.branch.address.zipcode
+                        }
+                    }
+                </td>
+
+            </tr>
+        </table>
+        <div style="padding-top:50px">
+            <p class="wrapper">
+                <b>
+                    @{
+                        if (Model.Customer != null)
+                        {
+                            @Model.Customer.customer_firstname@:&nbsp;@Model.Customer.customer_lastname
+                        }
+                    }, agrees to the terms and provisions of this agreement with Creative Kitchens Incorporated as set forth herin and agrees to make payment in accordance with schedule of payments below:
+                </b>
+            </p>
+        </div>
+
+        <div style="padding-bottom: 10px" align="center">
+            <h3>
+                <b>
+                    Agreement Total:  @{
+                        if (Model.TotalCost != null)
+                        {
+                            @Model.TotalAmt
+                        }
+                    }
+                </b>
+            </h3>
+        </div>
+
+
+        <div align="center" style="padding-bottom: 10px"><h4><b>Schedule of Payment:</b></h4></div>
+        <table style="padding-bottom:5%;padding-left:50px;" align="center">
+            <tr>
+                <td style="width:250px;height:10px;padding-bottom:15px" align="left"><h4></h4></td>
+                <td style="width:250px;height:10px;padding-bottom:15px" align="center"><h4></h4></td>
+                <td style="width:250px;height:10px;padding-bottom:15px" align="right"><h4>Initials</h4></td>
+            </tr>
+            <tr>
+
+                <td style="width:250px;height:10px;padding-bottom:15px" align="left"><h4>Down Payment</h4></td>
+                <td style="width:250px;height:10px;padding-bottom:15px" align="center">
+                    <h4>
+                        @{
+                            if (Model.TotalCost != null)
+                            {
+                                @Model.AmtDueAtSignProposal
+                            }
+                        }    50%
+                    </h4>
+                </td>
+                <td style="width:250px;height:10px;padding-bottom:15px" align="right"><h4>____________</h4></td>
+            </tr>
+            <tr>
+
+                <td style="width:250px;height:10px;padding-bottom:15px" align="left"><h4>Due at Start of Work</h4></td>
+                <td style="width:250px;height:10px;padding-bottom:15px" align="center">
+                    <h4>
+                        @{
+                            if (Model.TotalCost != null)
+                            {
+                                @Model.AmtDueUponStartWork
+                            }
+                        }    40%
+                    </h4>
+                </td>
+                <td style="width:250px;height:10px;padding-bottom:15px" align="right"><h4>____________</h4></td>
+            </tr>
+
+
+
+            <tr>
+
+                <td style="width:250px;height:10px;padding-bottom:15px" align="left"><h4>Upon Substantial Completion</h4></td>
+                <td style="width:250px;height:10px;padding-bottom:15px" align="center">
+                    <h4>
+                        @{
+                            if (Model.TotalCost != null)
+                            {
+                                @Model.AmtDueUponCompletion
+                            }
+                        }     10%
+                    </h4>
+                </td>
+                <td style="width:250px;height:10px;padding-bottom:15px" align="right"><h4>____________</h4></td>
+            </tr>
+
+        </table>
+        <div align="center" style="padding-bottom: 10px"><h4><b></b></h4></div>
+        <div align="center" style="padding-bottom: 10px"><h4><b></b></h4></div>
+        <div align="center" style="padding-bottom: 10px"><h4><b></b></h4></div>
+        <div align="center" style="padding-bottom: 10px"><h4><b></b></h4></div>
+
+        <table cellpadding=0 style="padding-top: 10%; margin-left:5%; width:90%">
+            <tr>
+                <td style="width:3%"></td>
+                <td style="width:30%"></td>
+                <td style="width:4%"></td>
+                <td style="width:3%"></td>
+            </tr>
+            <tr>
+                <td style="width:4%"></td>
+                <td class="signature" style="width:30%">Purchaser Signature</td>
+                <td style="width:4%"></td>
+                <td style="width:3%"></td>
+                <td class="signature" style="width:30%">Date</td>
+            </tr>
+            <tr style="height:80px"><td></td></tr>
+            <tr>
+                <td style="width:3%"></td>
+                <td style="width:30%"></td>
+                <td style="width:4%"></td>
+                <td style="width:3%"></td>
+            </tr>
+            <tr>
+                <td style="width:4%"></td>
+                <td class="signature" style="width:30%">Purchaser Signature</td>
+                <td style="width:4%"></td>
+                <td style="width:3%"></td>
+                <td class="signature" style="width:30%">Date</td>
+            </tr>
+            <tr style="height:100px"><td></td></tr>
+            <tr>
+                <td style="width:4%"></td>
+                <td class="signature" style="width:30%">Creative Kitchens Incorporated</td>
+                <td style="width:4%"></td>
+                <td style="width:3%"></td>
+                <td class="signature" style="width:30%">Date</td>
+            </tr>
+        </table>
+        <div style="clear:both; padding-top:20px; padding-bottom:20px; width:100%; padding-left: 27%">
+            <input type="checkbox" onclick="return false;" />
+            <label style="padding-left:30px; padding-top:3px; font-weight:normal"> Check Box if donations are being made to Habitat for Humanity</label>
+        </div>
+    </div>
+</body>
+</html>

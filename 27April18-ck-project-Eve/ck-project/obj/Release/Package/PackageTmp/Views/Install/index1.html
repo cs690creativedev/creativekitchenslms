@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Accordions</title>
+
+
+<style>
+	.panel-heading {
+  position: relative;
+}
+.panel-title{margin-left:30px}
+.panel-heading[data-toggle="collapse"]:after {
+  font-family: 'Glyphicons Halflings';
+  content: "\e072"; /* "play" icon */
+  position: absolute;
+  color: #83000B;
+  font-size: 16px;
+  line-height: 22px;
+  left: 10px;
+  top: calc(50% - 10px);
+
+  /* rotate "play" icon from > (right arrow) to down arrow */
+  -webkit-transform: rotate(-90deg);
+  -moz-transform:    rotate(-90deg);
+  -ms-transform:     rotate(-90deg);
+  -o-transform:      rotate(-90deg);
+  transform:         rotate(-90deg);
+}
+.panel-heading[data-toggle="collapse"].collapsed:after {
+  /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+  -webkit-transform: rotate(90deg);
+  -moz-transform:    rotate(90deg);
+  -ms-transform:     rotate(90deg);
+  -o-transform:      rotate(90deg);
+  transform:         rotate(90deg);
+}
+	
+	
+	
+	</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+	</head>
+	<body>
+
+<div class="container">
+   
+    <hr />
+
+  
+
+  
+        <script type="text/javascript">
+ $(document).ready(function () {
+toastr.success('@ViewBag.msg');
+});
+        </script>
+     <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
+            <h4 class="panel-title">Framing</h4>
+
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse">
+            <div class="panel-body">
+              <p>No Tasks</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
+            <h4 class="panel-title">Kitchen</h4>
+
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+			
+  <div class="panel panel-default">
+          <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion0" data-target="#collapseTwo1">
+            <h4 class="panel-title">Appliance & Sink Demo</h4>
+          </div>
+          <div id="collapseTwo1" class="panel-collapse collapse">
+            <div class="panel-body">	
+		<p>Bla bla bla</p> 
+            </div>
+          </div>
+        </div>
+         
+		 
+	<div class="panel panel-default">
+          <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" data-target="#collapseTwo2">
+            <h4 class="panel-title">Cabinet & Top Demo</h4>
+
+          </div>
+          <div id="collapseTwo2" class="panel-collapse collapse">
+            <div class="panel-body">	
+		<p>Bla bla bla</p>
+            </div>
+          </div>
+        </div>
+</div>
+</div>
+</div>
+		
+		
+		
+		
+      </div>
+   
+   
+   
+      
+           
+
+
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+</body>
+</html>

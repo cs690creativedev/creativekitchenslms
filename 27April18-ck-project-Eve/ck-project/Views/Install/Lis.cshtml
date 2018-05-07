@@ -1,0 +1,547 @@
+﻿
+@model ck_project.installation
+@{ 
+    
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")    
+    @if (ViewBag.msg != null)
+     {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                toastr.success('@ViewBag.msg');
+            });
+        </script>
+     }
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".navbar-nav li").removeClass("active");//this will remove the active class from
+            //previously active menu item
+            $('#lead').addClass('active');
+        });
+    </script>
+
+
+    <script>
+        $('.panel-collapse').on('show.bs.collapse', function () {
+            $(this).parent('.panel').find('.fa-angle-down').show();
+            $(this).parent('.panel').find('.fa-angle-right').hide();
+        })
+        $('.panel-collapse').on('hide.bs.collapse', function () {
+            $(this).parent('.panel').find('.fa-angle-down').hide();
+            $(this).parent('.panel').find('.fa-angle-right').show();
+        })
+    </script>
+    <script>
+        function myFunction(x) {
+            x.classList.toggle("fa-angle-down");
+        }
+    </script>
+
+
+}
+
+@{
+    <link href="~/Content/Tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="~/Scripts/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <link href = "~/Arrow/Arrow1.css" rel = "stylesheet" />
+
+    if (HttpContext.Current.User.IsInRole("Administrator"))
+    {
+        @Html.Partial("_AdminMenu")
+    }
+    else if (HttpContext.Current.User.IsInRole("Branch Manager"))
+    {
+        @Html.Partial("_BranchManager")
+    }
+    else
+    {
+        @Html.Partial("_MainMenu")
+    }
+}
+
+<div class="container">
+    <table>
+        <tr>
+            <td style="width:947px"><h2>Installation</h2></td>
+            <td style="width:50px">
+                <input type="button" value="Customer" onclick="location.href='@Url.Action("Edit", "Customers", new { id = ViewBag.customerNbr })'" class="btn btn-default" id="tabBtn" />
+            </td>
+            <td style="width:50px">
+                <input type="button" value="Lead" onclick="location.href='@Url.Action("Edit", "Lead", new { id = ViewBag.lid })'" class="btn btn-default" id="tabBtn" />
+            </td>
+            <td style="width:100px">
+                <input type="button" value="Products" onclick="location.href='@Url.Action("View", "Product", new { id = ViewBag.lid })'" class="btn btn-default" id="tabBtn" />
+            </td>
+            <td style="width:50px">
+                <input type="button" value="Summary" onclick="location.href='@Url.Action("ProjSummary", "Home", new { id = ViewBag.lid })'" class="btn btn-default" id="tabBtn" />
+            </td>
+            <td style="width:50px">
+                <input type="button" value="Print" onclick="location.href='@Url.Action("ProjPrint", "Home", new { id = ViewBag.lid })'" class="btn btn-default" id="tabBtn" />
+            </td>
+        </tr>
+    </table>
+    <hr />
+
+    @using (Html.BeginForm("lis", "Install", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <h5>All field with star is required</h5>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.installation_number)
+            @Html.Hidden("lead_num", (int)ViewBag.lid)
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.estimated_by, "Estimated By", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.DropDownList("estimated_by", (List<SelectListItem>)ViewBag.emplist, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.estimated_by, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.statrt_date, "Requested Start Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.EditorFor(model => model.statrt_date, new { htmlAttributes = new { @class = "form-control" } })
+
+
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.total_tile_cost, "Total Tile Cost*", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.total_tile_cost, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.total_tile_cost, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.estimated_date, "Estimated Date*", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.EditorFor(model => model.estimated_date, new { htmlAttributes = new { @class = "form-control" } })
+                    @if (Model == null) { }
+                    else
+                    {<h5>@Model.estimated_date</h5>}
+                    @Html.ValidationMessageFor(model => model.estimated_date, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.oneway_mileages_to_destination, "Mileages to destination*", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.oneway_mileages_to_destination, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.oneway_mileages_to_destination, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @{ if (HttpContext.Current.User.IsInRole("Administrator"))
+                {
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ov_labor_rate, "Override Labor Rate", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ov_labor_rate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ov_labor_rate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ov_material_rate, "Override Material Rate", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ov_material_rate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ov_material_rate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                } }
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+                }
+
+    @if (ViewBag.msg != null)
+    {
+        <script type="text/javascript">
+ $(document).ready(function () {
+toastr.success('@ViewBag.msg');
+});
+        </script>
+    }
+
+    @if (Model != null)
+    {
+
+        <div class="panel-group" id="accordion">
+            @foreach (SelectListItem a in ViewBag.mainc)
+            {
+
+              
+
+                    <div class="panel">
+                        <div class="panel-heading" style="margin-top:0px;margin-bottom:-5px; ">
+                           
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne@(a.Value)">
+                                        <i onclick="myFunction(this)" class="fa fa-angle-right" style="font-size:18px;">
+                                            @(a.Text)  -  @ck_project.Helpers.TaskHelper.Mainsun(Model.installation_number, a.Text) task(s)
+                                            </i>
+                                    </a>
+
+                         </div>
+                    </div>
+                    
+                        <div id="collapseOne@(a.Value)" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                @switch (a.Value)
+                    {
+                        case "kitchen":
+
+                            <div class="panel-group" id="kitchen">
+                                @foreach (SelectListItem kitchen in ViewBag.kitchen)
+                                        {
+
+                                        <div class="panel" style="border:none; box-shadow:none">
+                                            <div class="panel-heading" role="tab" id="headingOne">
+                                                <h4 class="panel-title" align="left" style="margin-top:-15px;margin-bottom:-5px; color:#A82517">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne@(a.Value+kitchen.Value)" aria-expanded="true" aria-controls="collapseOne">
+                                                        <i class="fa fa-angle-right"></i>
+                                                        <i class="fa fa-angle-down" style="display: none"></i>@(kitchen.Text)  -  @ck_project.Helpers.TaskHelper.Subsun(Model.installation_number, "KITCHEN", kitchen.Text) task(s)
+                                                    </a>
+                                                </h4>
+             
+                                            </div>
+                                            <div id="collapseOne@(a.Value+kitchen.Value)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                                <div class="panel-body">
+                                                    @Html.Action("AddJob", new { maincat = "kitchen", subcat = kitchen.Text, insnum = Model.installation_number, mode = 0 })
+                                                    @Html.Action("readtask", new { lid = Model.lead_number, maincat = "KITCHEN", subcat = kitchen.Text })
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
+                                  </div>
+
+                                        break;
+                                    case "Framing":
+                            <div class="panel-group" id="framing">
+                                @foreach (SelectListItem kitchen in ViewBag.framing)
+                                    {                                  
+                                        <div class="panel" style="border:none; box-shadow:none">
+                                            <div class="panel-heading" role="tab" id="headingTwo">
+                                                <h4 class="panel-title" align="left" style="margin-top:-15px;margin-bottom:-5px; color:#A82517">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo@(a.Value+kitchen.Value)" aria-expanded="false" aria-controls="collapseTwo">
+                                                        <i class="fa fa-angle-right"></i>
+                                                        <i class="fa fa-angle-down" style="display: none"></i> @(kitchen.Text)  -  @ck_project.Helpers.TaskHelper.Subsun(Model.installation_number, "FRAMING", kitchen.Text) task(s)
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwo@(a.Value+kitchen.Value)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                                <div class="panel-body">
+                                                    @Html.Action("AddJob", new { maincat = "FRAMING", subcat = kitchen.Text, insnum = Model.installation_number, mode = 0 })
+                                                    @Html.Action("readtask", new { lid = Model.lead_number, maincat = "FRAMING", subcat = kitchen.Text })
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
+                            </div>
+
+                                    break;
+                                case "Doors_Windows":
+                            <div class="panel-group" id="Doors_Windows">
+                                @foreach (SelectListItem kitchen in ViewBag.doorswindows)
+                                {
+                                    <div class="panel" style="border:none; box-shadow:none">
+                                        <div class="panel-heading" role="tab" id="headingThree">
+                                            <h4 class="panel-title" align="left" style="margin-top:-15px;margin-bottom:-5px; color:#A82517">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree@(a.Value+kitchen.Value)" aria-expanded="false" aria-controls="collapseThree">
+                                                    <i class="fa fa-angle-right"></i>
+                                                    <i class="fa fa-angle-down" style="display: none"></i> @(kitchen.Text)  -  @ck_project.Helpers.TaskHelper.Subsun(Model.installation_number, "DOORS & WINDOWS", kitchen.Text) task(s)
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseThree@(a.Value+kitchen.Value)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                            <div class="panel-body">
+                                                @Html.Action("AddJob", new { maincat = "DOORS & WINDOWS", subcat = kitchen.Text, insnum = Model.installation_number, mode = 0 })
+                                                @Html.Action("readtask", new { lid = Model.lead_number, maincat = "DOORS & WINDOWS", subcat = kitchen.Text })
+                                            </div>
+                                        </div>
+                                    </div>
+     
+                                }
+                            </div>
+
+                                    break;
+                                case "MECHANICALS":
+                            <div class="panel-group" id="Mechanicals">
+                                @foreach (SelectListItem kitchen in ViewBag.mech)
+                                    {
+
+                                        <div class="panel" style="border:none; box-shadow:none">
+                                            <div class="panel-heading" role="tab" id="headingFour">
+                                                <h4 class="panel-title" align="left" style="margin-top:-15px;margin-bottom:-5px; color:#A82517">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour@(a.Value+kitchen.Value)" aria-expanded="false" aria-controls="collapseFour">
+                                                        <i class="fa fa-angle-right"></i>
+                                                        <i class="fa fa-angle-down" style="display: none"></i> @(kitchen.Text)  -  @ck_project.Helpers.TaskHelper.Subsun(Model.installation_number, "MENCHANICALS", kitchen.Text) task(s)
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFour@(a.Value+kitchen.Value)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                                <div class="panel-body">
+                                                    @Html.Action("AddJob", new { maincat = "MECHANICALS", subcat = kitchen.Text, insnum = Model.installation_number, mode = 0 })
+                                                    @Html.Action("readtask", new { lid = Model.lead_number, maincat = "MECHANICALS", subcat = kitchen.Text })
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
+                            </div>
+
+                                    break;
+                                case "Electrical":
+                            <div class="panel-group" id="Electrical">
+                                @foreach (SelectListItem kitchen in ViewBag.elect)
+                                    {             
+                                        <div class="panel" style="border:none; box-shadow:none">
+                                            <div class="panel-heading" role="tab" id="headingFive">
+                                                <h4 class="panel-title" align="left" style="margin-top:-15px;margin-bottom:-5px; color:#A82517">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive@(a.Value+kitchen.Value)" aria-expanded="false" aria-controls="collapseFive">
+                                                        <i class="fa fa-angle-right"></i>
+                                                        <i class="fa fa-angle-down" style="display: none"></i> @(kitchen.Text)  -  @ck_project.Helpers.TaskHelper.Subsun(Model.installation_number, "ELECTRICAL", kitchen.Text) task(s)
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFive@(a.Value+kitchen.Value)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                                                <div class="panel-body">
+                                                    @Html.Action("AddJob", new { maincat = "ELECTRICAL", subcat = kitchen.Text, insnum = Model.installation_number, mode = 0 })
+                                                    @Html.Action("readtask", new { lid = Model.lead_number, maincat = "ELECTRICAL", subcat = kitchen.Text })
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
+                            </div>
+
+                                    break;
+                                case "Finish":
+                            <div class="panel-group" id="Finish">
+                                @foreach (SelectListItem kitchen in ViewBag.finish)
+                                    {
+
+                                        <div class="panel" style="border:none; box-shadow:none">
+                                            <div class="panel-heading" role="tab" id="headingSix">
+                                                <h4 class="panel-title" align="left" style="margin-top:-15px;margin-bottom:-5px; color:#A82517">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix@(a.Value+kitchen.Value)" aria-expanded="false" aria-controls="collapseSix">
+                                                        <i class="fa fa-angle-right"></i>
+                                                        <i class="fa fa-angle-down" style="display: none"></i> @(kitchen.Text)  -  @ck_project.Helpers.TaskHelper.Subsun(Model.installation_number, "FINISHS", kitchen.Text) task(s)
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseSix@(a.Value+kitchen.Value)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                                                <div class="panel-body">
+                                                    @Html.Action("AddJob", new { maincat = "FINISHES", subcat = kitchen.Text, insnum = Model.installation_number, mode = 0 })
+                                                    @Html.Action("readtask", new { lid = Model.lead_number, maincat = "FINISHES", subcat = kitchen.Text })
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
+                            </div>
+                                    break;
+                                case "Cabinetry":
+                            <div class="panel-group" id="Cabinetry">
+                                @foreach (SelectListItem kitchen in ViewBag.cabin)
+                                    {
+                                        
+
+                                        <div class="panel" style="border:none; box-shadow:none">
+                                            <div class="panel-heading" role="tab" id="headingSeven">
+                                                <h4 class="panel-title" align="left" style="margin-top:-15px;margin-bottom:-5px; color:#A82517">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven@(a.Value+kitchen.Value)" aria-expanded="false" aria-controls="collapseSeven">
+                                                        <i class="fa fa-angle-right"></i>
+                                                        <i class="fa fa-angle-down" style="display: none"></i> @(kitchen.Text)  -  @ck_project.Helpers.TaskHelper.Subsun(Model.installation_number, "CABINETRY INSTALL", kitchen.Text) task(s)
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseSeven@(a.Value+kitchen.Value)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+                                                <div class="panel-body">
+                                                    @Html.Action("AddJob", new { maincat = "CABINETRY INSTALL", subcat = kitchen.Text, insnum = Model.installation_number, mode = 0 })
+                                                    @Html.Action("readtask", new { lid = Model.lead_number, maincat = "CABINETRY INSTALL", subcat = kitchen.Text })
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
+                            </div>
+
+                                    break;
+                                case "Countertops":
+                            <div class="panel-group" id="Countertops">
+                                @foreach (SelectListItem kitchen in ViewBag.counter)
+                                    {
+                                       
+
+                                        <div class="panel" style="border:none; box-shadow:none">
+                                            <div class="panel-heading" role="tab" id="headingEight">
+                                                <h4 class="panel-title" align="left" style="margin-top:-15px;margin-bottom:-5px; color:#A82517">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEight@(a.Value+kitchen.Value)" aria-expanded="false" aria-controls="collapseEight">
+                                                        <i class="fa fa-angle-right"></i>
+                                                        <i class="fa fa-angle-down" style="display: none"></i> @(kitchen.Text)  -  @ck_project.Helpers.TaskHelper.Subsun(Model.installation_number, "COUNTERTOPS", kitchen.Text) task(s)
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseEight@(a.Value+kitchen.Value)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+                                                <div class="panel-body">
+                                                    @Html.Action("AddJob", new { maincat = "COUNTERTOPS", subcat = kitchen.Text, insnum = Model.installation_number, mode = 0 })
+                                                    @Html.Action("readtask", new { lid = Model.lead_number, maincat = "COUNTERTOPS", subcat = kitchen.Text })
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
+                            </div>
+
+                                    break;
+                                case "Appliance":
+                            <div class="panel-group" id="Appliance">
+                                @foreach (SelectListItem kitchen in ViewBag.appliance)
+                                    {
+                                        
+
+                                        <div class="panel" style="border:none; box-shadow:none">
+                                            <div class="panel-heading" role="tab" id="headingNine">
+                                                <h4 class="panel-title" align="left" style="margin-top:-15px;margin-bottom:-5px; color:#A82517">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseNine@(a.Value+kitchen.Value)" aria-expanded="false" aria-controls="collapseNine">
+                                                        <i class="fa fa-angle-right"></i>
+                                                        <i class="fa fa-angle-down" style="display: none"></i> @(kitchen.Text)  -  @ck_project.Helpers.TaskHelper.Subsun(Model.installation_number, "APPLIANCES AND FIXTURES", kitchen.Text) task(s)
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseNine@(a.Value+kitchen.Value)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
+                                                <div class="panel-body">
+                                                    @Html.Action("AddJob", new { maincat = "APPLIANCES AND FIXTURES", subcat = kitchen.Text, insnum = Model.installation_number, mode = 0 })
+                                                    @Html.Action("readtask", new { lid = Model.lead_number, maincat = "APPLIANCES AND FIXTURES", subcat = kitchen.Text })
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
+                            </div>
+
+                                    break;
+                                case "GENERAL":
+                            <div class="panel-group" id="372">
+                                @foreach (SelectListItem kitchen in ViewBag.tbd)
+                                    {
+                                        
+
+                                        <div class="panel" style="border:none; box-shadow:none">
+                                            <div class="panel-heading" role="tab" id="headingTen">
+                                                <h4 class="panel-title" align="left" style="margin-top:-15px;margin-bottom:-5px; color:#A82517">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTen@(a.Value+kitchen.Value)" aria-expanded="false" aria-controls="collapseTen">
+                                                        <i class="fa fa-angle-right"></i>
+                                                        <i class="fa fa-angle-down" style="display: none"></i> GENERAL  -  @ck_project.Helpers.TaskHelper.Subsun(Model.installation_number, "GENERAL", kitchen.Text) task(s)
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTen@(a.Value+kitchen.Value)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTen">
+                                                <div class="panel-body">
+                                                    @Html.Action("AddJob", new { maincat = "GENERAL", subcat = kitchen.Text, insnum = Model.installation_number, mode = 0 })
+                                                    @Html.Action("readtask", new { lid = Model.lead_number, maincat = "GENERAL", subcat = kitchen.Text })
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
+                            </div>
+
+                                    break;
+                                case "BATH":
+                            <div class="panel-group" id="BATH">
+                                @foreach (SelectListItem kitchen in ViewBag.bath)
+                                    {
+
+                                        <div class="panel" style="border:none; box-shadow:none">
+                                            <div class="panel-heading" role="tab" id="headingEleven">
+                                                <h4 class="panel-title" align="left" style="margin-top:-15px;margin-bottom:-5px; color:#A82517">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven@(a.Value+kitchen.Value)" aria-expanded="false" aria-controls="collapseSix">
+                                                        <i class="fa fa-angle-right"></i>
+                                                        <i class="fa fa-angle-down" style="display: none"></i> @(kitchen.Text)  -  @ck_project.Helpers.TaskHelper.Subsun(Model.installation_number, "BATH", kitchen.Text) task(s)
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseEleven@(a.Value+kitchen.Value)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEleven">
+                                                <div class="panel-body">
+                                                   @Html.Action("AddJob", new { maincat = "BATH", subcat = kitchen.Text, insnum = Model.installation_number, mode = 0 })
+                                                   @Html.Action("readtask", new { lid = Model.lead_number, maincat = "BATH", subcat = kitchen.Text })
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
+                            </div>
+
+                                    break;
+                                case "MISC":
+                            <div class="panel-group" id="MISC">
+                                @foreach (SelectListItem kitchen in ViewBag.misc)
+                                    {
+                                        
+
+                                        <div class="panel" style="border:none; box-shadow:none">
+                                            <div class="panel-heading" role="tab" id="headingTwelve">
+                                                <h4 class="panel-title" align="left" style="margin-top:-15px;margin-bottom:-5px; color:#A82517">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve@(a.Value+kitchen.Value)" aria-expanded="false" aria-controls="collapseTwelve">
+                                                        <i class="fa fa-angle-right"></i>
+                                                        <i class="fa fa-angle-down" style="display: none"></i> @(kitchen.Text)  -  @ck_project.Helpers.TaskHelper.Subsun(Model.installation_number, "MISC", "Disclaimers") task(s)
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwelve@(a.Value+kitchen.Value)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwelve">
+                                                <div class="panel-body">
+                                                    @Html.Action("AddJob", new { maincat = "kitchen", subcat = kitchen.Text, insnum = Model.installation_number, mode = 1 })
+                                                    @Html.Action("custT", new { iid = Model.installation_number })
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
+                            </div>
+                                    break;
+                            }
+
+                            </div>
+                        </div>
+                    
+            }
+
+                </div>
+            }
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

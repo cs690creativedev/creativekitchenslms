@@ -1,0 +1,405 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+@using ck_project.Models;
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @if (ViewBag.m != null)
+    {
+        <script type="text/javascript">
+ $(document).ready(function () {
+     toastr.success('@ViewBag.m');
+
+
+ });
+
+        </script>
+    }
+}
+
+
+@{
+    if (HttpContext.Current.User.IsInRole("Administrator"))
+    {
+        @Html.Partial("_AdminMenu")
+    }
+    else if (HttpContext.Current.User.IsInRole("Branch Manager"))
+    {
+        @Html.Partial("_BranchManager")
+    }
+    else
+    {
+        @Html.Partial("_MainMenu")
+    }
+}
+
+<div class="container">
+
+    <table>
+        <tr>
+            <td style="width:435px"><h2>Location Statistics Of Sold Jobs</h2></td>
+            <td style="width:680px" align="right"></td>
+        </tr>
+        <tr>
+            @*<td>This page displays the report of Company Lead Source Analysis.</td>*@
+    </table>
+
+    @using (Html.BeginForm("LocationStatisticsOfSoldJobs", "Reports", FormMethod.Get))
+    {
+        <input type="date" name="search" class="search_box" id="stDt" />
+        <input type="date" name="search1" class="search_box" />
+        @*@Html.TextBox("search", ViewData.TemplateInfo.FormattedModelValue, new { placeholder = "Start Date" });*@
+        @*@Html.TextBox("search1", ViewData.TemplateInfo.FormattedModelValue, new { placeholder = "End Date" });*@
+        <input type="submit" value="Search" />
+
+
+    }
+
+    <br />
+    <div align="center">
+        @if (Session["dtFrom"] != null)
+        {
+            <label id="lblfrom">From : @Session["dtFrom"] To : @Session["dtTo"]</label>
+        }
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="col-lg-4">
+                <table cellspacing="0" id="ledger" class="table1 ">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">State</th>
+                            <th data-priority="1">No. Of Leads</th>
+                            <th data-priority="1">No. Of Leads Sold</th>
+                            <th data-priority="3">Total Amount Of Sold Jobs</th>
+                        </tr>
+
+                    </thead>
+                    @if (Model.CLSA12.Count == 0)
+                    {
+                        <tr>
+                            <td colspan="6"> Sorry, There are no Records
+                            <td>
+                        </tr>
+                    }
+                    else
+                    {
+
+                        foreach (CLSA12 item in Model.CLSA12)
+                        {
+                            if (item.Total1 == 1)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.State
+
+                                    </td>
+                                    <td>
+                                        @item.No_of_Leads
+
+                                    </td>
+                                    <td>
+                                        @item.No_of_Leads_Sold
+
+                                    </td>
+                                    <td>
+                                        @item.Total_amount_of_Sold_Jobs
+
+                                    </td>
+
+
+                                </tr>
+                            }
+                        }
+                    }
+                </table>
+            </div>
+
+
+            <div class="col-lg-3">
+                <h4>TOP 10 CITIES IN WV
+SOLD JOBS</h4>
+                <table cellspacing="0" id="ledger" class="table1 ">
+                    <thead>
+                        <tr>
+                            <th data-priority="1">Qty</th>
+                            <th data-priority="3">City</th>
+
+
+                        </tr>
+
+                    </thead>
+                    @if (Model.CLSA12.Count == 0)
+                    {
+                        <tr>
+                            <td colspan="6"> Sorry, There are no Records
+                            <td>
+                        </tr>
+                    }
+                    else
+                    {
+
+                        foreach (CLSA12 item in Model.CLSA12)
+                        {
+                            if (item.Total2 == 2)
+                            {
+                                <tr>
+
+                                    <td>
+                                        @item.QTY
+                                    </td>
+                                    <td>
+                                        @item.City
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+                    }
+                </table>
+            </div>
+            <div class="col-lg-3">
+                <h4>TOP 10 CITIES IN OH
+SOLD JOBS</h4>
+                <table cellspacing="0" id="ledger" class="table1 ">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">QTY</th>
+                            <th data-priority="1">City</th>
+
+
+                        </tr>
+
+                    </thead>
+                    @if (Model.CLSA12.Count == 0)
+                    {
+                        <tr>
+                            <td colspan="6"> Sorry, There are no Records
+                            <td>
+                        </tr>
+                    }
+                    else
+                    {
+
+                        foreach (CLSA12 item in Model.CLSA12)
+                        {
+                            if (item.Total3 == 3)
+                            {
+                                <tr>
+
+                                    <td>
+                                        @item.QTY3
+                                    </td>
+                                    <td>
+                                        @item.City3
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+                    }
+                </table>
+            </div><!--column-->
+
+            <div class="col-lg-2">
+                <h4>TOP 10 CITIES IN KY
+SOLD JOBS</h4>
+                <table cellspacing="0" id="ledger" class="table1 ">
+                    <thead>
+                        <tr>
+                            <th data-priority="1">QTY</th>
+                            <th data-priority="3">City</th>
+
+
+                        </tr>
+
+                    </thead>
+                    @if (Model.CLSA12.Count == 0)
+                    {
+                        <tr>
+                            <td colspan="6"> Sorry, There are no Records
+                            <td>
+                        </tr>
+                    }
+                    else
+                    {
+
+                        foreach (CLSA12 item in Model.CLSA12)
+                        {
+                            if (item.Total4 == 4)
+                            {
+                                <tr>
+
+                                    <td>
+                                        @item.QTY4
+                                    </td>
+                                    <td>
+                                        @item.City4
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+<br />
+
+    <div class="col-lg-12">
+
+        <table cellspacing="0" id="ledger" class="table1 ">
+            <thead>
+                <tr>
+                    <th data-priority="1">State</th>
+                    <th data-priority="3">Installed</th>
+                    <th data-priority="1">PickUp</th>
+                    <th data-priority="3">Delivered</th>
+                    <th data-priority="1">In City Installed</th>
+                    <th data-priority="1">Out City Installed</th>
+                    <th data-priority="3">Remodel</th>
+                    <th data-priority="1">Construction</th>
+                    <th data-priority="3">Builder</th>
+
+
+                </tr>
+
+            </thead>
+            @if (Model.CLSA12.Count == 0)
+            {
+                <tr>
+                    <td colspan="6"> Sorry, There are no Records
+                    <td>
+                </tr>
+            }
+            else
+            {
+
+                foreach (CLSA12 item in Model.CLSA12)
+                {
+                    if (item.Total5 == 5)
+                    {
+                        <tr>
+
+                            <td>
+                                @item.State5
+                            </td>
+                            <td>
+                                @item.Installed5
+                            </td>
+                            <td>
+                                @item.Pickup5
+                            </td>
+                            <td>
+                                @item.Delivered5
+                            </td>
+                            <td>
+                                @item.In_City_Installed5
+                            </td>
+                            <td>
+                                @item.Out_City_Installed5
+                            </td>
+                            <td>
+                                @item.Remodel5
+                            </td>
+                            <td>
+                                @item.New_Construction5
+                            </td>
+                            <td>
+                                @item.Builder5
+                            </td>
+
+                        </tr>
+                    }
+                }
+            }
+        </table>
+    </div>
+    
+    
+    <div class="col-lg-12">
+        <br />    
+        <table cellspacing="0" id="ledger" class="table1 ">
+            <thead>
+                <tr>
+                    <th data-priority="1">Total</th>
+                    <th data-priority="3">Installed</th>
+                    <th data-priority="1">PickUp</th>
+                    <th data-priority="3">Delivered</th>
+                    <th data-priority="1">In-City Installed</th>
+                    <th data-priority="3">Out-City Installed</th>
+                    <th data-priority="1">Remodel</th>
+                    <th data-priority="3">Construction</th>
+                    <th data-priority="3">Builder</th>
+
+                </tr>
+
+            </thead>
+            @if (Model.CLSA12.Count == 0)
+            {
+                <tr>
+                    <td colspan="6"> Sorry, There are no Records
+                    <td>
+                </tr>
+            }
+            else
+            {
+
+                foreach (CLSA12 item in Model.CLSA12)
+                {
+                    if (item.Total6 == 6)
+                    {
+                        <tr>
+
+                            <td>
+                                @item.Total
+                            </td>
+                            <td>
+                                @item.Installed6
+                            </td>
+                            <td>
+                                @item.Pickup6
+                            </td>
+                            <td>
+                                @item.Delivered6
+                            </td>
+                            <td>
+                                @item.In_City_Installed6
+                            </td>
+                            <td>
+                                @item.Out_City_Installed6
+                            </td>
+                            <td>
+                                @item.Remodel6
+                            </td>
+                            <td>
+                                @item.New_Construction6
+                            </td>
+                            <td>
+                                @item.Builder6
+                            </td>
+
+                        </tr>
+                    }
+                }
+            }
+        </table>
+    </div>
+
+</div>
+<br />
+<br />
+<div class="row top-buffer">
+    <div class="col-md-4 column" align="center">
+        <input type="button" value="PDF" onclick="location.href='@Url.Action("Convert12", "Print" , new { documentName="CLSA12" , str="View12Print" })'" class="btn btn-default" id="printBtn" />
+        <input type="button" value="Excel" onclick="location.href='@Url.Action("Convert12Excel", "Print" , new { documentName="CLSA12" , str="View12Print" })'" class="btn btn-default" id="printBtn" />
+    </div>
+</div>
+<br />
+<br />
+
+

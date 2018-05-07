@@ -1,0 +1,259 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using ck_project.Models;
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @if (ViewBag.m != null)
+    {
+        <script type="text/javascript">
+ $(document).ready(function () {
+     toastr.success('@ViewBag.m');
+
+
+ });
+
+        </script>
+    }
+}
+@{
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <link href="~/Content/report.css" rel="stylesheet" />
+}
+
+@{
+    if (HttpContext.Current.User.IsInRole("Administrator"))
+    {
+        @Html.Partial("_AdminMenu")
+    }
+    else if (HttpContext.Current.User.IsInRole("Branch Manager"))
+    {
+        @Html.Partial("_BranchManager")
+    }
+    else
+    {
+        @Html.Partial("_MainMenu")
+    }
+}
+
+<div class="container">
+
+    <table>
+        <tr>
+            <td style="width:435px"><h2>Company Sales </h2></td>
+            <td style="width:680px" align="right"></td>
+        </tr>
+        <tr>
+            @*<td>This page displays the report of Company Lead Source Analysis.</td>*@
+    </table>
+
+    @using (Html.BeginForm("CompanySalesDashboard", "Reports", FormMethod.Get))
+    {
+        @*<input type="date" name="search" class="search_box" id="stDt" />*@
+        <input type="date" name="search1" class="search_box" />
+        @*@Html.TextBox("search", ViewData.TemplateInfo.FormattedModelValue, new { placeholder = "Start Date" });*@
+        @*@Html.TextBox("search1", ViewData.TemplateInfo.FormattedModelValue, new { placeholder = "End Date" });*@
+        <input type="submit" value="Search" />
+
+
+    }
+
+    <br />
+    <div align="center">
+        @if (Session["dtTo"] != null)
+        {
+        <label id="lblfrom"> As On : @Session["dtTo"]</label>
+        }
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="col-lg-3">
+                
+                <table cellspacing="0" id="ledger" class="table1 ">
+                    <thead>
+                        <tr>
+                            <th>
+                                Branch Name
+                            </th>
+                            <th>
+                                YTD Total Sales
+                            </th>
+                        </tr>
+                    </thead>
+
+                    @if (Model.CLSA17.Count == 0)
+            {
+                <tr>
+                    <td colspan="6"> Sorry, There are no Records
+                    <td>
+                </tr>
+        }
+        else
+        {
+
+            foreach (CLSA17 item in Model.CLSA17)
+            {
+                if (item.Total1 == 1)
+                {
+                <tr>
+                    <td>
+                        @item.Branch_Name
+
+                    </td>
+                    <td>
+                        @item.YTD_Total_Sales
+
+                    </td>
+                </tr>
+                }
+            }
+        }
+                </table>
+            </div>
+            <div class="col-lg-3">
+                <h6 style="text-align:center">HUNTINGTON</h6>
+                <table cellspacing="0" id="ledger" class="table1">
+                    <thead>
+                        <tr>
+
+                            <th>
+                                Month
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                        </tr>
+                    </thead>
+
+                    @if (Model.CLSA17.Count == 0)
+            {
+                    <tr>
+                        <td colspan="6"> Sorry, There are no Records
+                        <td>
+                    </tr>
+        }
+        else
+        {
+
+            foreach (CLSA17 item in Model.CLSA17)
+            {
+                if (item.Total2 == 2)
+                {
+                    <tr>
+
+                        <td>
+                            @item.Month
+                        </td>
+                        <td>
+                            @item.Price
+                        </td>
+
+                    </tr>
+                }
+            }
+        }
+                </table>
+            </div>
+            <div class="col-lg-3">
+                <h6 style="text-align:center">CHARLESTON</h6>
+                <table cellspacing="0" id="ledger" class="table1 ">
+                    <thead>
+                        <tr>
+
+                            <th>
+                                Month
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                        </tr>
+                    </thead>
+
+                    @if (Model.CLSA17.Count == 0)
+            {
+                    <tr>
+                        <td colspan="6"> Sorry, There are no Records
+                        <td>
+                    </tr>
+        }
+        else
+        {
+
+            foreach (CLSA17 item in Model.CLSA17)
+            {
+                if (item.Total3 == 3)
+                {
+                    <tr>
+
+                        <td>
+                            @item.Month3
+                        </td>
+                        <td>
+                            @item.Price3
+                        </td>
+
+                    </tr>
+                }
+            }
+        }
+                </table>
+             </div>
+            <div class="col-lg-3">
+                <h6 style="text-align:center">LEWISBURG</h6>
+                <table cellspacing="0" id="ledger" class="table1">
+                    <thead>
+                        <tr>
+
+                            <th>
+                                Month
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                        </tr>
+                    </thead>
+
+                    @if (Model.CLSA17.Count == 0)
+            {
+                    <tr>
+                        <td colspan="6"> Sorry, There are no Records
+                        <td>
+                    </tr>
+                    }
+                    else
+                    {
+
+                        foreach (CLSA17 item in Model.CLSA17)
+                        {
+                            if (item.Total4 == 4)
+                            {
+                    <tr>
+
+                        <td>
+                            @item.Month4
+                        </td>
+                        <td>
+                            @item.Price4
+                        </td>
+
+                    </tr>
+                            }
+                        }
+                    }
+                </table>
+            </div>
+
+            </div>
+        </div>
+    <br />
+    <br />
+    <div class="row top-buffer">
+        <div class="col-md-4 column" align="center">
+            <input type="button" value="PDF" onclick="location.href='@Url.Action("Convert17", "Print", new { documentName = "CLSA17", str = "View17Print"})'" class="btn btn-default" id="printBtn" />
+            <input type="button" value="Excel" onclick="location.href='@Url.Action("Convert17Excel", "Print", new { documentName = "CLSA17", str = "View17Print"})'" class="btn btn-default" id="printBtn" />
+        </div>
+    </div>
+</div>
+
+

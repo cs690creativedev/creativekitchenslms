@@ -1,0 +1,134 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using ck_project.Models;
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @if (ViewBag.m != null)
+    {
+        <script type="text/javascript">
+ $(document).ready(function () {
+     toastr.success('@ViewBag.m');
+
+
+ });
+
+        </script>
+    }
+}
+
+@{
+    if (HttpContext.Current.User.IsInRole("Administrator"))
+    {
+        @Html.Partial("_AdminMenu")
+    }
+    else if (HttpContext.Current.User.IsInRole("Branch Manager"))
+    {
+        @Html.Partial("_BranchManager")
+    }
+    else
+    {
+        @Html.Partial("_MainMenu")
+    }
+}
+
+<div class="container">
+
+    <table>
+        <tr>
+            <td style="width:435px"><h2>COMPANY LEAD STATUS ANALYSIS</h2></td>
+            <td style="width:680px" align="right"></td>
+        </tr>
+        <tr>
+            @*<td>This page displays the report of Company Lead Source Analysis.</td>*@
+    </table>
+
+    @using (Html.BeginForm("CompanyLeadStatusAnalysis", "Reports", FormMethod.Get))
+    {
+        <input type="date" name="search" class="search_box" id="stDt" />
+        <input type="date" name="search1" class="search_box" />
+        @*@Html.TextBox("search", ViewData.TemplateInfo.FormattedModelValue, new { placeholder = "Start Date" });*@
+        @*@Html.TextBox("search1", ViewData.TemplateInfo.FormattedModelValue, new { placeholder = "End Date" });*@
+        <input type="submit" value="Search" />
+
+
+    }
+
+    <br />
+    <div align="center">
+        @if (Session["dtFrom"] != null && Session["dtFrom"].ToString() != "")
+        {
+            <label id="lblfrom">From : @Session["dtFrom"] To : @Session["dtTo"]</label>
+        }
+    </div>
+    <br />
+    <table class="table table-striped">
+        <thead class="mdb-color darken-3">
+            <tr>
+                <th>
+                    Project Status Name
+                </th>
+                <th>
+                    Huntington
+                </th>
+                <th>
+                    Charleston
+                </th>
+                <th>
+                    Lewisburg
+                </th>
+                <th>
+                    Total
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+
+        @if (Model.CLSA3.Count == 0)
+            {
+            <tr>
+                <td colspan="6"> Sorry, There are no Records
+                <td>
+            </tr>
+        }
+        else
+        {
+
+            foreach (CLSA3 item in Model.CLSA3)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Project_Status_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Huntington)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Charleston)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lewisburg)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.total)
+                    </td>
+
+                </tr>
+            }
+        }
+    </table>
+
+
+
+    <div class="row top-buffer">
+        <div class="col-md-2 column" align="center">
+            <input type="button" value="PDF" onclick="location.href='@Url.Action("Convert3", "Print", new { documentName = "CLSA3", str = "View3Print"})'" class="btn btn-default" id="printBtn" />
+            <input type="button" value="Excel" onclick="location.href='@Url.Action("Convert3Excel", "Print", new { documentName = "CLSA3", str = "View3Print"})'" class="btn btn-default" id="printBtn" />
+        </div>
+    </div>
+
+
+</div>
+
+

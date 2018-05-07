@@ -1,0 +1,680 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CKsysdbStoreContainer" CdmEntityContainer="ckdatabase">
+    <FunctionImportMapping FunctionImportName="LoginByUsernamePassword" FunctionName="CKsysdb.Store.LoginByUsernamePassword" />
+    <EntitySetMapping Name="rates_installation">
+      <EntityTypeMapping TypeName="CKsysdb.rates_installation">
+        <MappingFragment StoreEntitySet="rates_installation">
+          <ScalarProperty Name="installation_number" ColumnName="installation_number" />
+          <ScalarProperty Name="rate_number" ColumnName="rate_number" />
+          <ScalarProperty Name="rates_installation_number" ColumnName="rates_installation_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="taxes_leads">
+      <EntityTypeMapping TypeName="CKsysdb.taxes_leads">
+        <MappingFragment StoreEntitySet="taxes_leads">
+          <ScalarProperty Name="lead_number" ColumnName="lead_number" />
+          <ScalarProperty Name="tax_number" ColumnName="tax_number" />
+          <ScalarProperty Name="taxes_leads_number" ColumnName="taxes_leads_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="addresses">
+      <EntityTypeMapping TypeName="CKsysdb.address">
+        <MappingFragment StoreEntitySet="addresses">
+          <ScalarProperty Name="lead_number" ColumnName="lead_number" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+          <ScalarProperty Name="county" ColumnName="county" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="address1" ColumnName="address" />
+          <ScalarProperty Name="address_type" ColumnName="address_type" />
+          <ScalarProperty Name="address_number" ColumnName="address_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="branches">
+      <EntityTypeMapping TypeName="CKsysdb.branch">
+        <MappingFragment StoreEntitySet="branches">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="address_number" ColumnName="address_number" />
+          <ScalarProperty Name="fax_number" ColumnName="fax_number" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="branch_name" ColumnName="branch_name" />
+          <ScalarProperty Name="branch_number" ColumnName="branch_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="building_permit">
+      <EntityTypeMapping TypeName="CKsysdb.building_permit">
+        <MappingFragment StoreEntitySet="building_permit">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_range" ColumnName="end_range" />
+          <ScalarProperty Name="start_range" ColumnName="start_range" />
+          <ScalarProperty Name="fixed_fee" ColumnName="fixed_fee" />
+          <ScalarProperty Name="adjustable_fee" ColumnName="adjustable_fee" />
+          <ScalarProperty Name="permit_number" ColumnName="permit_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="CKsysdb.customer">
+        <MappingFragment StoreEntitySet="customers">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="address_number" ColumnName="address_number" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="second_phone_number" ColumnName="second_phone_number" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="customer_lastname" ColumnName="customer_lastname" />
+          <ScalarProperty Name="customer_middlename" ColumnName="customer_middlename" />
+          <ScalarProperty Name="customer_firstname" ColumnName="customer_firstname" />
+          <ScalarProperty Name="customer_number" ColumnName="customer_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="delivery_status">
+      <EntityTypeMapping TypeName="CKsysdb.delivery_status">
+        <MappingFragment StoreEntitySet="delivery_status">
+          <ScalarProperty Name="delivery_status_name" ColumnName="delivery_status_name" />
+          <ScalarProperty Name="delivery_status_number" ColumnName="delivery_status_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employees">
+      <EntityTypeMapping TypeName="CKsysdb.employee">
+        <MappingFragment StoreEntitySet="employees">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="branch_number" ColumnName="branch_number" />
+          <ScalarProperty Name="user_type_number" ColumnName="user_type_number" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="emp_password" ColumnName="emp_password" />
+          <ScalarProperty Name="emp_username" ColumnName="emp_username" />
+          <ScalarProperty Name="emp_lastname" ColumnName="emp_lastname" />
+          <ScalarProperty Name="emp_middlename" ColumnName="emp_middlename" />
+          <ScalarProperty Name="emp_firstname" ColumnName="emp_firstname" />
+          <ScalarProperty Name="emp_number" ColumnName="emp_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="installations">
+      <EntityTypeMapping TypeName="CKsysdb.installation">
+        <MappingFragment StoreEntitySet="installation">
+          <ScalarProperty Name="ov_material_rate" ColumnName="ov_material_rate" />
+          <ScalarProperty Name="ov_labor_rate" ColumnName="ov_labor_rate" />
+          <ScalarProperty Name="oneway_mileages_to_destination" ColumnName="oneway_mileages_to_destination" />
+          <ScalarProperty Name="estimated_hours" ColumnName="estimated_hours" />
+          <ScalarProperty Name="billable_hours" ColumnName="billable_hours" />
+          <ScalarProperty Name="installation_labor_only_cost" ColumnName="installation_labor_only_cost" />
+          <ScalarProperty Name="tile_installation_days" ColumnName="tile_installation_days" />
+          <ScalarProperty Name="mileage_expense" ColumnName="mileage_expense" />
+          <ScalarProperty Name="hotel_expense" ColumnName="hotel_expense" />
+          <ScalarProperty Name="building_permit_cost" ColumnName="building_permit_cost" />
+          <ScalarProperty Name="travel_time_one_way" ColumnName="travel_time_one_way" />
+          <ScalarProperty Name="estimated_date" ColumnName="estimated_date" />
+          <ScalarProperty Name="total_travel_cost" ColumnName="total_travel_cost" />
+          <ScalarProperty Name="total_tile_cost" ColumnName="total_tile_cost" />
+          <ScalarProperty Name="total_construction_materials_cost" ColumnName="total_construction_materials_cost" />
+          <ScalarProperty Name="total_operational_expenses" ColumnName="total_operational_expenses" />
+          <ScalarProperty Name="total_installation_labor_cost" ColumnName="total_installation_labor_cost" />
+          <ScalarProperty Name="total_per_diem_cost" ColumnName="total_per_diem_cost" />
+          <ScalarProperty Name="installation_days" ColumnName="installation_days" />
+          <ScalarProperty Name="hotel_round_trip" ColumnName="hotel_round_trip" />
+          <ScalarProperty Name="required_hotel_nights" ColumnName="required_hotel_nights" />
+          <ScalarProperty Name="total_miles" ColumnName="total_miles" />
+          <ScalarProperty Name="recommendation" ColumnName="recommendation" />
+          <ScalarProperty Name="lead_number" ColumnName="lead_number" />
+          <ScalarProperty Name="statrt_date" ColumnName="statrt_date" />
+          <ScalarProperty Name="estimated_by" ColumnName="estimated_by" />
+          <ScalarProperty Name="installation_number" ColumnName="installation_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lead_log_file">
+      <EntityTypeMapping TypeName="CKsysdb.lead_log_file">
+        <MappingFragment StoreEntitySet="lead_log_file">
+          <ScalarProperty Name="new_value" ColumnName="new_value" />
+          <ScalarProperty Name="prvious_value" ColumnName="prvious_value" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="action_name" ColumnName="action_name" />
+          <ScalarProperty Name="column_name" ColumnName="column_name" />
+          <ScalarProperty Name="table_name" ColumnName="table_name" />
+          <ScalarProperty Name="lead_number" ColumnName="lead_number" />
+          <ScalarProperty Name="emp_username" ColumnName="emp_username" />
+          <ScalarProperty Name="log_number" ColumnName="log_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lead_source">
+      <EntityTypeMapping TypeName="CKsysdb.lead_source">
+        <MappingFragment StoreEntitySet="lead_source">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="source_name" ColumnName="source_name" />
+          <ScalarProperty Name="source_number" ColumnName="source_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="leads">
+      <EntityTypeMapping TypeName="CKsysdb.lead">
+        <MappingFragment StoreEntitySet="leads">
+          <ScalarProperty Name="lead_creator" ColumnName="lead_creator" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="second_phone_number" ColumnName="second_phone_number" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="Last_update_date" ColumnName="Last_update_date" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="tax_exempt" ColumnName="tax_exempt" />
+          <ScalarProperty Name="project_name" ColumnName="project_name" />
+          <ScalarProperty Name="lead_date" ColumnName="lead_date" />
+          <ScalarProperty Name="in_city" ColumnName="in_city" />
+          <ScalarProperty Name="delivery_status_number" ColumnName="delivery_status_number" />
+          <ScalarProperty Name="branch_number" ColumnName="branch_number" />
+          <ScalarProperty Name="emp_number" ColumnName="emp_number" />
+          <ScalarProperty Name="source_number" ColumnName="source_number" />
+          <ScalarProperty Name="project_type_number" ColumnName="project_type_number" />
+          <ScalarProperty Name="project_status_number" ColumnName="project_status_number" />
+          <ScalarProperty Name="class_number" ColumnName="class_number" />
+          <ScalarProperty Name="customer_number" ColumnName="customer_number" />
+          <ScalarProperty Name="lead_number" ColumnName="lead_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="CKsysdb.product">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="lead_number" ColumnName="lead_number" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="manufacture" ColumnName="manufacture" />
+          <ScalarProperty Name="product_source" ColumnName="product_source" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="model" ColumnName="model" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="cat_anme" ColumnName="cat_anme" />
+          <ScalarProperty Name="product_number" ColumnName="product_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_class">
+      <EntityTypeMapping TypeName="CKsysdb.project_class">
+        <MappingFragment StoreEntitySet="project_class">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="class_name" ColumnName="class_name" />
+          <ScalarProperty Name="class_number" ColumnName="class_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_status">
+      <EntityTypeMapping TypeName="CKsysdb.project_status">
+        <MappingFragment StoreEntitySet="project_status">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="project_status_name" ColumnName="project_status_name" />
+          <ScalarProperty Name="project_status_number" ColumnName="project_status_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_type">
+      <EntityTypeMapping TypeName="CKsysdb.project_type">
+        <MappingFragment StoreEntitySet="project_type">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="project_type_name" ColumnName="project_type_name" />
+          <ScalarProperty Name="project_type_number" ColumnName="project_type_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rates">
+      <EntityTypeMapping TypeName="CKsysdb.rate">
+        <MappingFragment StoreEntitySet="rates">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="rate_measurement" ColumnName="rate_measurement" />
+          <ScalarProperty Name="rate_name" ColumnName="rate_name" />
+          <ScalarProperty Name="rate_number" ColumnName="rate_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="CKsysdb.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tasks">
+      <EntityTypeMapping TypeName="CKsysdb.task">
+        <MappingFragment StoreEntitySet="tasks">
+          <ScalarProperty Name="task_sub_cat" ColumnName="task_sub_cat" />
+          <ScalarProperty Name="task_main_cat" ColumnName="task_main_cat" />
+          <ScalarProperty Name="task_name" ColumnName="task_name" />
+          <ScalarProperty Name="special_task" ColumnName="special_task" />
+          <ScalarProperty Name="task_number" ColumnName="task_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tasks_installation">
+      <EntityTypeMapping TypeName="CKsysdb.tasks_installation">
+        <MappingFragment StoreEntitySet="tasks_installation">
+          <ScalarProperty Name="material_retail_cost" ColumnName="material_retail_cost" />
+          <ScalarProperty Name="labor_cost" ColumnName="labor_cost" />
+          <ScalarProperty Name="m_cost" ColumnName="m_cost" />
+          <ScalarProperty Name="hours" ColumnName="hours" />
+          <ScalarProperty Name="installation_number" ColumnName="installation_number" />
+          <ScalarProperty Name="task_number" ColumnName="task_number" />
+          <ScalarProperty Name="tasks_installation_number" ColumnName="tasks_installation_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="taxes">
+      <EntityTypeMapping TypeName="CKsysdb.tax">
+        <MappingFragment StoreEntitySet="taxes">
+          <ScalarProperty Name="in_city" ColumnName="in_city" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+          <ScalarProperty Name="county" ColumnName="county" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="tax_value" ColumnName="tax_value" />
+          <ScalarProperty Name="tax_anme" ColumnName="tax_anme" />
+          <ScalarProperty Name="tax_number" ColumnName="tax_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="total_cost">
+      <EntityTypeMapping TypeName="CKsysdb.total_cost">
+        <MappingFragment StoreEntitySet="total_cost">
+          <ScalarProperty Name="building_permit_cost" ColumnName="building_permit_cost" />
+          <ScalarProperty Name="tax_cost" ColumnName="tax_cost" />
+          <ScalarProperty Name="lead_number" ColumnName="lead_number" />
+          <ScalarProperty Name="total_cost1" ColumnName="total_cost" />
+          <ScalarProperty Name="installation_cost" ColumnName="installation_cost" />
+          <ScalarProperty Name="product_cost" ColumnName="product_cost" />
+          <ScalarProperty Name="cost_number" ColumnName="cost_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users_types">
+      <EntityTypeMapping TypeName="CKsysdb.users_types">
+        <MappingFragment StoreEntitySet="users_types">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="user_type_name" ColumnName="user_type_name" />
+          <ScalarProperty Name="user_type_number" ColumnName="user_type_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="archive_leads">
+      <EntityTypeMapping TypeName="CKsysdb.archive_leads">
+        <MappingFragment StoreEntitySet="archive_leads">
+          <ScalarProperty Name="total_cost" ColumnName="total_cost" />
+          <ScalarProperty Name="tax_cost" ColumnName="tax_cost" />
+          <ScalarProperty Name="product_cost" ColumnName="product_cost" />
+          <ScalarProperty Name="installation_cost" ColumnName="installation_cost" />
+          <ScalarProperty Name="building_permit_cost" ColumnName="building_permit_cost" />
+          <ScalarProperty Name="in_city" ColumnName="in_city" />
+          <ScalarProperty Name="tax_exempt" ColumnName="tax_exempt" />
+          <ScalarProperty Name="lead_close_date" ColumnName="lead_close_date" />
+          <ScalarProperty Name="lead_date" ColumnName="lead_date" />
+          <ScalarProperty Name="second_lead_phone_number" ColumnName="second_lead_phone_number" />
+          <ScalarProperty Name="lead_phone_number" ColumnName="lead_phone_number" />
+          <ScalarProperty Name="lead_email" ColumnName="lead_email" />
+          <ScalarProperty Name="jobsite_zipcode" ColumnName="jobsite_zipcode" />
+          <ScalarProperty Name="jobsite_state" ColumnName="jobsite_state" />
+          <ScalarProperty Name="jobsite_county" ColumnName="jobsite_county" />
+          <ScalarProperty Name="jobsite_city" ColumnName="jobsite_city" />
+          <ScalarProperty Name="jobsite_address" ColumnName="jobsite_address" />
+          <ScalarProperty Name="project_type" ColumnName="project_type" />
+          <ScalarProperty Name="class_name" ColumnName="class_name" />
+          <ScalarProperty Name="source_name" ColumnName="source_name" />
+          <ScalarProperty Name="delivery_status" ColumnName="delivery_status" />
+          <ScalarProperty Name="project_status" ColumnName="project_status" />
+          <ScalarProperty Name="emp_lastname" ColumnName="emp_lastname" />
+          <ScalarProperty Name="emp_firstname" ColumnName="emp_firstname" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="customer_email" ColumnName="customer_email" />
+          <ScalarProperty Name="customer_lastname" ColumnName="customer_lastname" />
+          <ScalarProperty Name="customer_firstname" ColumnName="customer_firstname" />
+          <ScalarProperty Name="branch_name" ColumnName="branch_name" />
+          <ScalarProperty Name="project_name" ColumnName="project_name" />
+          <ScalarProperty Name="lead_number" ColumnName="lead_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lead_source_report">
+      <EntityTypeMapping TypeName="CKsysdb.lead_source_report">
+        <MappingFragment StoreEntitySet="lead_source_report">
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="Lewisburg" ColumnName="Lewisburg" />
+          <ScalarProperty Name="Charleston" ColumnName="Charleston" />
+          <ScalarProperty Name="Huntington" ColumnName="Huntington" />
+          <ScalarProperty Name="source_name" ColumnName="source_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="fn_view3" FunctionName="CKsysdb.Store.fn_view3">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view3_Result">
+          <ScalarProperty Name="Project_Status_Name" ColumnName="Project Status Name" />
+          <ScalarProperty Name="Huntington" ColumnName="Huntington" />
+          <ScalarProperty Name="Charleston" ColumnName="Charleston" />
+          <ScalarProperty Name="Lewisburg" ColumnName="Lewisburg" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view2" FunctionName="CKsysdb.Store.fn_view2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view2_Result">
+          <ScalarProperty Name="Project_Type_Name" ColumnName="Project Type Name" />
+          <ScalarProperty Name="Huntington" ColumnName="Huntington" />
+          <ScalarProperty Name="Charleston" ColumnName="Charleston" />
+          <ScalarProperty Name="Lewisburg" ColumnName="Lewisburg" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view4" FunctionName="CKsysdb.Store.fn_view4">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view4_Result">
+          <ScalarProperty Name="Types" ColumnName="Types" />
+          <ScalarProperty Name="Huntington" ColumnName="Huntington" />
+          <ScalarProperty Name="Charleston" ColumnName="Charleston" />
+          <ScalarProperty Name="Lewisburg" ColumnName="Lewisburg" />
+          <ScalarProperty Name="Company_Total" ColumnName="Company Total" />
+          <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view5_1" FunctionName="CKsysdb.Store.fn_view5_1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view5_1_Result">
+          <ScalarProperty Name="Project_Type" ColumnName="Project Type" />
+          <ScalarProperty Name="Huntington" ColumnName="Huntington" />
+          <ScalarProperty Name="Charleston" ColumnName="Charleston" />
+          <ScalarProperty Name="Lewisburg" ColumnName="Lewisburg" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view5_2" FunctionName="CKsysdb.Store.fn_view5_2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view5_2_Result">
+          <ScalarProperty Name="Delivery_Type" ColumnName="Delivery Type" />
+          <ScalarProperty Name="Huntington" ColumnName="Huntington" />
+          <ScalarProperty Name="Charleston" ColumnName="Charleston" />
+          <ScalarProperty Name="Lewisburg" ColumnName="Lewisburg" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view6" FunctionName="CKsysdb.Store.fn_view6">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view6_Result">
+          <ScalarProperty Name="Designer" ColumnName="Designer" />
+          <ScalarProperty Name="Total_Open" ColumnName="Total Open" />
+          <ScalarProperty Name="Total_Sold" ColumnName="Total Sold" />
+          <ScalarProperty Name="Total_Deferred" ColumnName="Total Deferred" />
+          <ScalarProperty Name="Total_Lost_Price" ColumnName="Total Lost Price" />
+          <ScalarProperty Name="Total_Lost_Comp" ColumnName="Total Lost Comp" />
+          <ScalarProperty Name="Total_Lost_Other" ColumnName="Total Lost Other" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view10" FunctionName="CKsysdb.Store.fn_view10">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view10_Result">
+          <ScalarProperty Name="Responsible_Party_Lead_Creator" ColumnName="Responsible Party/Lead Creator" />
+          <ScalarProperty Name="Project_Type" ColumnName="Project Type" />
+          <ScalarProperty Name="Project_Status" ColumnName="Project Status" />
+          <ScalarProperty Name="Project_Class" ColumnName="Project Class" />
+          <ScalarProperty Name="Delivery_Status" ColumnName="Delivery Status" />
+          <ScalarProperty Name="Project_Total" ColumnName="Project Total" />
+          <ScalarProperty Name="Primary_Phone" ColumnName="Primary Phone" />
+          <ScalarProperty Name="Primary_Email" ColumnName="Primary Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view13" FunctionName="CKsysdb.Store.fn_view13">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view13_Result">
+          <ScalarProperty Name="Designer" ColumnName="Designer" />
+          <ScalarProperty Name="Sold_Date" ColumnName="Sold Date" />
+          <ScalarProperty Name="Responsible_Party_Lead_Creator" ColumnName="Responsible Party/Lead Creator" />
+          <ScalarProperty Name="Project_Name" ColumnName="Project Name" />
+          <ScalarProperty Name="Delivery_Status" ColumnName="Delivery Status" />
+          <ScalarProperty Name="Installed_Total" ColumnName="Installed Total" />
+          <ScalarProperty Name="Delivered_Total_Before_Taxes" ColumnName="Delivered Total Before Taxes" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view14" FunctionName="CKsysdb.Store.fn_view14">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view14_Result">
+          <ScalarProperty Name="Designer" ColumnName="Designer" />
+          <ScalarProperty Name="No__of_all_assigned_Leads" ColumnName="No. of all assigned Leads" />
+          <ScalarProperty Name="Total_amount_of_all_leads_assigned" ColumnName="Total amount of all leads assigned" />
+          <ScalarProperty Name="No__of_Sold_Jobs_Only" ColumnName="No. of Sold Jobs Only" />
+          <ScalarProperty Name="Total_amount_of_Sold_Jobs_Only" ColumnName="Total amount of Sold Jobs Only" />
+          <ScalarProperty Name="No__of_Lost_Jobs_Only" ColumnName="No. of Lost Jobs Only" />
+          <ScalarProperty Name="Total_amount_of_Lost_Jobs" ColumnName="Total amount of Lost Jobs" />
+          <ScalarProperty Name="Closed_Percentage" ColumnName="Closed Percentage" />
+          <ScalarProperty Name="Avg_Days_to_Sell_a_Lead" ColumnName="Avg Days to Sell a Lead" />
+          <ScalarProperty Name="Avg_Amount_of_Sold_Jobs" ColumnName="Avg Amount of Sold Jobs" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view15" FunctionName="CKsysdb.Store.fn_view15">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view15_Result">
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Huntington" ColumnName="Huntington" />
+          <ScalarProperty Name="Charleston" ColumnName="Charleston" />
+          <ScalarProperty Name="Lewisburg" ColumnName="Lewisburg" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view16" FunctionName="CKsysdb.Store.fn_view16">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view16_Result">
+          <ScalarProperty Name="Responsible_Party_Lead_Creator" ColumnName="Responsible Party/Lead Creator" />
+          <ScalarProperty Name="Designer" ColumnName="Designer" />
+          <ScalarProperty Name="Project_Type" ColumnName="Project Type" />
+          <ScalarProperty Name="Project_Class" ColumnName="Project Class" />
+          <ScalarProperty Name="Delivery_Status" ColumnName="Delivery Status" />
+          <ScalarProperty Name="Project_Total" ColumnName="Project Total" />
+          <ScalarProperty Name="Primary_Phone" ColumnName="Primary Phone" />
+          <ScalarProperty Name="Primary_Email" ColumnName="Primary Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view7" FunctionName="CKsysdb.Store.fn_view7">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view7_Result">
+          <ScalarProperty Name="Designer" ColumnName="Designer" />
+          <ScalarProperty Name="Total_Open" ColumnName="Total Open" />
+          <ScalarProperty Name="Total_Sold" ColumnName="Total Sold" />
+          <ScalarProperty Name="Total_Deferred" ColumnName="Total Deferred" />
+          <ScalarProperty Name="Total_Lost_Price" ColumnName="Total Lost Price" />
+          <ScalarProperty Name="Total_Lost_Comp" ColumnName="Total Lost Comp" />
+          <ScalarProperty Name="Total_Lost_Other" ColumnName="Total Lost Other" />
+          <ScalarProperty Name="Total_Closed" ColumnName="Total Closed" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Closed_Percentage" ColumnName="Closed Percentage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view8" FunctionName="CKsysdb.Store.fn_view8">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view8_Result">
+          <ScalarProperty Name="Responsible_Party_Lead_Creator" ColumnName="Responsible Party/Lead Creator" />
+          <ScalarProperty Name="Designer" ColumnName="Designer" />
+          <ScalarProperty Name="Mailing_Address" ColumnName="Mailing Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+          <ScalarProperty Name="Primary_Phone" ColumnName="Primary Phone" />
+          <ScalarProperty Name="Primary_Email" ColumnName="Primary Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view9" FunctionName="CKsysdb.Store.fn_view9">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view9_Result">
+          <ScalarProperty Name="Responsible_Party_Lead_Creator" ColumnName="Responsible Party/Lead Creator" />
+          <ScalarProperty Name="Designer" ColumnName="Designer" />
+          <ScalarProperty Name="Mailing_Address" ColumnName="Mailing Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+          <ScalarProperty Name="Primary_Phone" ColumnName="Primary Phone" />
+          <ScalarProperty Name="Primary_Email" ColumnName="Primary Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view11_1" FunctionName="CKsysdb.Store.fn_view11_1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view11_1_Result">
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="QTY" ColumnName="QTY" />
+          <ScalarProperty Name="Total_Amount" ColumnName="Total Amount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view11_2" FunctionName="CKsysdb.Store.fn_view11_2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view11_2_Result">
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="QTY" ColumnName="QTY" />
+          <ScalarProperty Name="Total_Amount" ColumnName="Total Amount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view11_3" FunctionName="CKsysdb.Store.fn_view11_3">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view11_3_Result">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="QTY" ColumnName="QTY" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view11_4" FunctionName="CKsysdb.Store.fn_view11_4">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view11_4_Result">
+          <ScalarProperty Name="YTD_Statistics" ColumnName="YTD Statistics" />
+          <ScalarProperty Name="Numerics" ColumnName="Numerics" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view12_1" FunctionName="CKsysdb.Store.fn_view12_1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view12_1_Result">
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="No__of_Leads" ColumnName="No. of Leads" />
+          <ScalarProperty Name="No__of_Leads_Sold" ColumnName="No. of Leads Sold" />
+          <ScalarProperty Name="Total_amount_of_Sold_Jobs" ColumnName="Total amount of Sold Jobs" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view12_2" FunctionName="CKsysdb.Store.fn_view12_2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view12_2_Result">
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="City" ColumnName="City" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view12_3" FunctionName="CKsysdb.Store.fn_view12_3">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view12_3_Result">
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="City" ColumnName="City" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view12_4" FunctionName="CKsysdb.Store.fn_view12_4">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view12_4_Result">
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="City" ColumnName="City" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view12_5" FunctionName="CKsysdb.Store.fn_view12_5">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view12_5_Result">
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Installed" ColumnName="Installed" />
+          <ScalarProperty Name="Pickup" ColumnName="Pickup" />
+          <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+          <ScalarProperty Name="In_City_Installed" ColumnName="In-City Installed" />
+          <ScalarProperty Name="Out_City_Installed" ColumnName="Out-City Installed" />
+          <ScalarProperty Name="Remodel" ColumnName="Remodel" />
+          <ScalarProperty Name="New_Construction" ColumnName="New Construction" />
+          <ScalarProperty Name="Builder" ColumnName="Builder" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view12_6" FunctionName="CKsysdb.Store.fn_view12_6">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view12_6_Result">
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Installed" ColumnName="Installed" />
+          <ScalarProperty Name="Pickup" ColumnName="Pickup" />
+          <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+          <ScalarProperty Name="In_City_Installed" ColumnName="In-City Installed" />
+          <ScalarProperty Name="Out_City_Installed" ColumnName="Out-City Installed" />
+          <ScalarProperty Name="Remodel" ColumnName="Remodel" />
+          <ScalarProperty Name="New_Construction" ColumnName="New Construction" />
+          <ScalarProperty Name="Builder" ColumnName="Builder" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view17_1" FunctionName="CKsysdb.Store.fn_view17_1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view17_1_Result">
+          <ScalarProperty Name="Branch_Name" ColumnName="Branch Name" />
+          <ScalarProperty Name="YTD_Total_Sales" ColumnName="YTD Total Sales" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view17_2" FunctionName="CKsysdb.Store.fn_view17_2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view17_2_Result">
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view17_3" FunctionName="CKsysdb.Store.fn_view17_3">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view17_3_Result">
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_view17_4" FunctionName="CKsysdb.Store.fn_view17_4">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CKsysdb.fn_view17_4_Result">
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

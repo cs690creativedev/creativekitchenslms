@@ -1,0 +1,165 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using ck_project.Models;
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @if (ViewBag.m != null)
+    {
+        <script type="text/javascript">
+ $(document).ready(function () {
+     toastr.success('@ViewBag.m');
+
+
+ });
+
+        </script>
+    }
+}
+
+
+@{
+    if (HttpContext.Current.User.IsInRole("Administrator"))
+    {
+        @Html.Partial("_AdminMenu")
+    }
+    else if (HttpContext.Current.User.IsInRole("Branch Manager"))
+    {
+        @Html.Partial("_BranchManager")
+    }
+    else
+    {
+        @Html.Partial("_MainMenu")
+    }
+}
+
+<div class="container">
+
+    <table>
+        <tr>
+            <td style="width:435px"><h2>Company Designer Lead Status</h2></td>
+            <td style="width:680px" align="right"></td>
+        </tr>
+        <tr>
+            @*<td>This page displays the report of Company Lead Source Analysis.</td>*@
+    </table>
+
+    @using (Html.BeginForm("CompanyDesignerLeadStatus", "Reports", FormMethod.Get))
+    {
+        <input type="date" name="search" class="search_box" id="stDt" />
+        <input type="date" name="search1" class="search_box" />
+        @*@Html.TextBox("search", ViewData.TemplateInfo.FormattedModelValue, new { placeholder = "Start Date" });*@
+        @*@Html.TextBox("search1", ViewData.TemplateInfo.FormattedModelValue, new { placeholder = "End Date" });*@
+        <input type="submit" value="Search" />
+
+
+    }
+
+    <br />
+    <div align="center">
+        @if (Session["dtFrom"] != null)
+        {
+            <label id="lblfrom">From : @Session["dtFrom"] To : @Session["dtTo"]</label>
+        }
+    </div>
+    <br />
+    <table class="table table-striped">
+        <thead class="mdb-color darken-3">
+            <tr>
+                <th>
+                    Designer
+                </th>
+                <th>
+                    Total Open
+                </th>
+                <th>
+                    Total Sold
+                </th>
+                <th>
+                    Total Deferred
+                </th>
+                <th>
+                    Total Lost Price
+                </th>
+                <th>
+                    Total Lost Comp
+                </th>
+                <th>
+                    Total Lost Other
+                </th>
+                <th>
+                    Total Closed
+                </th>
+                <th>
+                    Total
+                </th>
+                <th>
+                    Closed Percentage
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+
+        @if (Model.CLSA7.Count == 0)
+            {
+            <tr>
+                <td colspan="6"> Sorry, There are no Records
+                <td>
+            </tr>
+        }
+        else
+        {
+
+            foreach (CLSA7 item in Model.CLSA7)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Designer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total_Open)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total_Sold)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total_Deferred)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total_Lost_Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total_Lost_Comp)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total_Lost_Other)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total_Closed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Closed_Percentage)
+                    </td>
+
+                </tr>
+            }
+        }
+    </table>
+
+
+
+    <div class="row top-buffer">
+        <div class="col-md-2 column" align="center">
+            <input type="button" value="PDF" onclick="location.href='@Url.Action("Convert7", "Print", new { documentName = "CLSA7", str = "View7Print"})'" class="btn btn-default" id="printBtn" />
+            <input type="button" value="Excel" onclick="location.href='@Url.Action("Convert7Excel", "Print", new { documentName = "CLSA7", str = "View7Print"})'" class="btn btn-default" id="printBtn" />
+        </div>
+    </div>
+
+
+</div>
+
+

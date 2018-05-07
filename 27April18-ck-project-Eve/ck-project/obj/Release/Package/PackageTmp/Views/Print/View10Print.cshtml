@@ -1,0 +1,92 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<ck_project.Models.CLSA10>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@using (Html.BeginForm("DesignerActiveLeadReport", "Reports", FormMethod.Get))
+{
+
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    @*<meta name="viewport" content="initial-scale=1.0">*@
+    <title>Sale Contract Management System</title>
+    <link href="http://leadmanagealpha.apphb.com/Content/bootstrap.sandstone.css" rel="stylesheet" type="text/css" />
+    <link href="http://leadmanagealpha.apphb.com/Content/Print.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="pic2" align="center"><img src="http://leadmanagealpha.apphb.com/Content/Images/proposal_pic2.png" /></div>
+
+    <table class="container" style="width:300px;padding:40px" align="right">
+        <tr>
+            <td style="padding:5px 10px;border:1px solid #666">
+                <label>From : </label>
+                @Session["dtFrom"]
+            </td>
+            <td style="padding:5px 10px;border:1px solid #666">
+                <label>To : </label>
+                @Session["dtTo"]
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <div class="header"><h2>DESIGNER ACTIVE LEAD REPORT</h2></div>
+
+    <div>
+        <table class="table table-striped">
+            <thead class="mdb-color darken-3">
+                <tr>
+                    <th>
+                        Responsible Party/Lead Creator
+                    </th>
+                    <th>
+                        Project Type
+                    </th>
+                    <th>
+                        Project Status
+                    </th>
+                    <th>
+                        Project Class
+                    </th>
+                    <th>
+                        Delivery Status
+                    </th>
+                    <th>
+                        Project Total
+                    </th>
+                    <th>
+                        Primary Phone
+                    </th>
+                    <th>
+                        Primary Email
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+
+            @{
+                foreach (var prod in Model)
+                {
+                    <tr>
+                        <td>@prod.Responsible_Party_Or_Lead_Creator.ToString()</td>
+                        <td>@prod.Project_Type.ToString()</td>
+                        <td>@prod.Project_Status.ToString()</td>
+                        <td>@prod.Project_Class.ToString()</td>
+                        <td>@prod.Delivery_Status.ToString()</td>
+                        <td>@prod.Project_Total.ToString()</td>
+                        <td>@prod.Primary_Phone.ToString()</td>
+                        <td>@prod.Primary_Email.ToString()</td>
+
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</body>
+</html>

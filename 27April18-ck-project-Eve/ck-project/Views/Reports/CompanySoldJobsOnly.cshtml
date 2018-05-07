@@ -1,0 +1,154 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using ck_project.Models;
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @if (ViewBag.m != null)
+    {
+        <script type="text/javascript">
+ $(document).ready(function () {
+     toastr.success('@ViewBag.m');
+
+
+ });
+
+        </script>
+    }
+}
+
+
+@{
+    if (HttpContext.Current.User.IsInRole("Administrator"))
+    {
+        @Html.Partial("_AdminMenu")
+    }
+    else if (HttpContext.Current.User.IsInRole("Branch Manager"))
+    {
+        @Html.Partial("_BranchManager")
+    }
+    else
+    {
+        @Html.Partial("_MainMenu")
+    }
+}
+
+<div class="container">
+
+    <table>
+        <tr>
+            <td style="width:435px"><h2>Company Sold Jobs Only</h2></td>
+            <td style="width:680px" align="right"></td>
+        </tr>
+        <tr>
+            @*<td>This page displays the report of Company Lead Source Analysis.</td>*@
+    </table>
+
+    @using (Html.BeginForm("CompanySoldJobsOnly", "Reports", FormMethod.Get))
+    {
+        <input type="date" name="search" class="search_box" id="stDt" />
+        <input type="date" name="search1" class="search_box" />
+        @*@Html.TextBox("search", ViewData.TemplateInfo.FormattedModelValue, new { placeholder = "Start Date" });*@
+        @*@Html.TextBox("search1", ViewData.TemplateInfo.FormattedModelValue, new { placeholder = "End Date" });*@
+        <input type="submit" value="Search" />
+
+
+    }
+
+    <br />
+    <div align="center">
+        @if (Session["dtFrom"] != null)
+        {
+            <label id="lblfrom">From : @Session["dtFrom"] To : @Session["dtTo"]</label>
+        }
+    </div>
+    <br />
+    <table class="table table-striped">
+        <thead class="mdb-color darken-3">
+            <tr>
+                <th>
+                    Responsible Party/Lead Creator
+                </th>
+                <th>
+                    Designer
+                </th>
+                <th>
+                    Mailing Address
+                </th>
+                <th>
+                    City
+                </th>
+                <th>
+                    State
+                </th>
+                <th>
+                    ZipCode
+                </th>
+                <th>
+                    Primary Phone
+                </th>
+                <th>
+                    Primary Email
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+
+        @if (Model.CLSA9.Count == 0)
+            {
+            <tr>
+                <td colspan="6"> Sorry, There are no Records
+                <td>
+            </tr>
+        }
+        else
+        {
+
+            foreach (CLSA9 item in Model.CLSA9)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Responsible_Party_Or_Lead_Creator)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Designer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mailing_Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.State)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ZipCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Primary_Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Primary_Email)
+                    </td>
+
+
+                </tr>
+            }
+        }
+    </table>
+
+
+
+    <div class="row top-buffer">
+        <div class="col-md-2 column" align="center">
+            <input type="button" value="PDF" onclick="location.href='@Url.Action("Convert9", "Print", new { documentName = "CLSA9", str = "View9Print"})'" class="btn btn-default" id="printBtn" />
+            <input type="button" value="Excel" onclick="location.href='@Url.Action("Convert9Excel", "Print", new { documentName = "CLSA9", str = "View9Print"})'" class="btn btn-default" id="printBtn" />
+        </div>
+    </div>
+
+
+</div>
+
+

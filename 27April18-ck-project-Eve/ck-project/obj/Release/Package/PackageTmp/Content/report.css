@@ -1,0 +1,18 @@
+/* CSS Document */
+
+.table1{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd; 
+	font-family: 'Nanum Gothic', sans-serif;
+	font-weight:normal;
+}
+
+.table1 th, .table1 td {
+    text-align:center; border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.table1 tr:nth-child(even){background-color: #f2f2f2}
+

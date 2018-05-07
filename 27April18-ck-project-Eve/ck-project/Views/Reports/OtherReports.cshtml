@@ -1,0 +1,29 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<ck_project.lead_log_file>
+
+
+@{
+    if (HttpContext.Current.User.IsInRole("Administrator"))
+    {
+        @Html.Partial("_AdminMenu")
+    }
+    else
+    {
+        @Html.Partial("_MainMenu")
+    }
+}
+
+<div class="container">
+    <table>
+        <tr>
+            <td style="width:435px"><h2>Other Reports</h2></td>
+            <td style="width:680px" align="right"></td>
+        </tr>
+        <tr>
+
+            <td>This page displays the other reports.</td>
+            </tr>
+            </table>
+
+</div>

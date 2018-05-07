@@ -1,0 +1,394 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using ck_project.Models;
+@model IEnumerable<ck_project.Models.CLSA12>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @if (ViewBag.m != null)
+    {
+        <script type="text/javascript">
+ $(document).ready(function () {
+     toastr.success('@ViewBag.m');
+
+
+ });
+
+        </script>
+    }
+}
+
+<!DOCTYPE html>
+@using (Html.BeginForm("LocationStatisticsOfSoldJobs", "Reports", FormMethod.Get))
+{
+
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    @*<meta name="viewport" content="initial-scale=1.0">*@
+    <title>Sale Contract Management System</title>
+    <link href="http://leadmanagealpha.apphb.com/Content/bootstrap.sandstone.css" rel="stylesheet" type="text/css" />
+    <link href="http://leadmanagealpha.apphb.com/Content/Print.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        .table1 {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+            font-family: 'Nanum Gothic', sans-serif;
+            font-weight: normal;
+        }
+
+            .table1 th, .table1 td {
+                text-align: center;
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            .table1 tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+        .tableWidth {
+            width: 17%;
+            margin-right: 20px;
+            float: left;
+        }
+
+            .tableWidth h5 {
+                width: 90%;
+                font-size: 11px;
+                float: left;
+            }
+
+            .tableWidth1 {
+            width: 40%;
+            margin-right: 20px;
+            float: left;
+        }
+
+            .tableWidth1 h5 {
+                width: 90%;
+                font-size: 11px;
+                float: left;
+            }
+    </style>
+</head>
+<body>
+    <div class="pic2" align="center"><img src="http://leadmanagealpha.apphb.com/Content/Images/proposal_pic2.png" /></div>
+
+    <table class="container" style="width:300px;padding:40px" align="right">
+        <tr>
+            <td style="padding:5px 10px;border:1px solid #666">
+                <label>From : </label>
+                @Session["dtFrom"]
+            </td>
+            <td style="padding:5px 10px;border:1px solid #666">
+                <label>To : </label>
+                @Session["dtTo"]
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <div class="header"><h2>LOCATION STATISTICS OF SOLD JOBS</h2></div>
+
+    <div>
+        <br />
+        <table class="table1 tableWidth1">
+            
+            <thead>
+                <tr>
+                    <th>
+                        State
+                    </th>
+                    <th>
+                        No. of Leads
+                    </th>
+                    <th>
+                        No. Leads Sold
+                    </th>
+                    <th>
+                        Total Amount Of Sold Jobs
+                    </th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                if (item.Total1 == 1)
+                {
+                    <tr>
+                        <td>
+                            @item.State
+
+                        </td>
+                        <td>
+                            @item.No_of_Leads
+
+                        </td>
+                        <td>
+                            @item.No_of_Leads_Sold
+
+                        </td>
+                        <td>
+                            @item.Total_amount_of_Sold_Jobs
+
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+        
+        <h6>TOP 10 CITIES IN WV
+SOLD JOBS</h6>
+        <table class="table1 tableWidth">
+            <thead>
+                
+                <tr>
+                    <th>
+                        QTY
+                    </th>
+                    <th>
+                        City
+                    </th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                if (item.Total2 == 2)
+                {
+                    <tr>
+                        <td>
+                            @item.QTY
+                        </td>
+                        <td>
+                            @item.City
+                        </td>
+                    
+                    </tr>
+                }
+            }
+
+        </table>
+        <h6>
+            TOP 10 CITIES IN OH
+            SOLD JOBS
+        </h6>
+        <table class="table1 tableWidth">
+            <thead>
+                <tr>
+                    <th>
+                        QTY
+                    </th>
+                    <th>
+                        City
+                    </th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                if (item.Total3 == 3)
+                {
+                    <tr>
+                        <td>
+                            @item.QTY3
+                        </td>
+                        <td>
+                            @item.City3
+                        </td>
+
+                    </tr>
+                }
+            }
+
+        </table>
+        <h6>
+            TOP 10 CITIES IN KY
+            SOLD JOBS
+        </h6>
+        <table class="table1 tableWidth">
+            <thead>
+                <tr>
+                    <th>
+                        QTY
+                    </th>
+                    <th>
+                        City
+                    </th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                if (item.Total4 == 4)
+                {
+                    <tr>
+                        <td>
+                            @item.QTY4
+                        </td>
+                        <td>
+                            @item.City4
+                        </td>
+
+                    </tr>
+                }
+            }
+
+        </table>
+        </div>
+       
+        <div>
+            <table class="table1" style="margin-top:250px;">
+                <thead>
+                    <tr>
+                        <th>
+                            State
+                        </th>
+                        <th>
+                            Installed
+                        </th>
+                        <th>
+                            PickUp
+                        </th>
+                        <th>
+                            Delivered
+                        </th>
+                        <th>
+                            In City Installed
+                        </th>
+                        <th>
+                            Out City Installed
+                        </th>
+                        <th>
+                            Remodel
+                        </th>
+                        <th>
+                            New Construction
+                        </th>
+                        <th>
+                            Builder
+                        </th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+            {
+                if (item.Total5 == 5)
+                {
+            <tr>
+                <td>
+                    @item.State5
+                </td>
+                <td>
+                    @item.Installed5
+                </td>
+                <td>
+                    @item.Pickup5
+                </td>
+                <td>
+                    @item.Delivered5
+                </td>
+                <td>
+                    @item.In_City_Installed5
+                </td>
+                <td>
+                    @item.Out_City_Installed5
+                </td>
+                <td>
+                    @item.Remodel5
+                </td>
+                <td>
+                    @item.New_Construction5
+                </td>
+                <td>
+                    @item.Builder5
+                </td>
+
+            </tr>
+                }
+            }
+
+            </table>
+            <br />
+          
+            <table class="table1">
+                <thead>
+                    <tr>
+                        <th>
+                            Total
+                        </th>
+                        <th>
+                            Installed
+                        </th>
+                        <th>
+                            PickUp
+                        </th>
+                        <th>
+                            Delivered
+                        </th>
+                        <th>
+                            In City Installed
+                        </th>
+                        <th>
+                            Out City Installed
+                        </th>
+                        <th>
+                            Remodel
+                        </th>
+                        <th>
+                            New Construction
+                        </th>
+                        <th>
+                            Builder
+                        </th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+            {
+                if (item.Total6 == 6)
+                {
+            <tr>
+                <td>
+                    @item.Total
+                </td>
+                <td>
+                    @item.Installed6
+                </td>
+                <td>
+                    @item.Pickup6
+                </td>
+                <td>
+                    @item.Delivered6
+                </td>
+                <td>
+                    @item.In_City_Installed6
+                </td>
+                <td>
+                    @item.Out_City_Installed6
+                </td>
+                <td>
+                    @item.Remodel6
+                </td>
+                <td>
+                    @item.New_Construction6
+                </td>
+                <td>
+                    @item.Builder6
+                </td>
+
+            </tr>
+                }
+            }
+
+            </table>
+        </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+﻿<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="@Url.Action("AdminMainPage", "Admin")">
+                <img src="~/Content/Images/logo.jpg" class="navbar-brand" />
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav" id="menu">
+                <li class="active" id="home">
+                    <a href="@Url.Action("ListLog", "Log")"><i class="fa fa-home" style="font-size:20px;"></i><span class="sr-only">(current)</span></a>
+                </li>
+
+               @* <li id="customer"><a href="@Url.Action("ListCustomers", "Customers")">Manage Customers</a></li> *@
+
+                <li class="dropdown" id="lead">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manage Customers<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="@Url.Action("AddCustomer", "Customers")">Add Customer</a></li>
+                        <li><a href="@Url.Action("ListCustomers", "Customers")">View Customers</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown" id="lead">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lead Management<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="@Url.Action("ListLead", "Lead")">All Leads</a></li>
+                        <li><a href="@Url.Action("ListArcLead", "ArcLeads")">Closed Leads</a></li>
+                    </ul>
+                </li>
+
+                @*<li id="employee"><a href="@Url.Action("ListEmp", "Emp")">Manage Employees</a></li>*@
+                <li class="dropdown" id="tools">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="@Url.Action("CompanyLeadSourceAnalysis", "Reports")">Company Lead Source Analysis</a></li>
+                        <li><a href="@Url.Action("CompanyProjectTypeAnalysis", "Reports")">Company Project Type Analysis</a></li>
+                        <li><a href="@Url.Action("CompanyLeadStatusAnalysis", "Reports")">Company Lead Status Analysis</a></li>
+                        <li><a href="@Url.Action("CompanyProductTypeAnalysis", "Reports")">Company Product Type Analysis</a></li>
+                        <li><a href="@Url.Action("CompanyLeadTypeCategoryAnalysis", "Reports")">Company Lead Type & Category Analysis</a></li>
+                        <li><a href="@Url.Action("CompanyDesignerLeadStatusTotals", "Reports")">Company Designer Lead Status Totals</a></li>
+                        <li><a href="@Url.Action("CompanyDesignerLeadStatus", "Reports")">Company Designer Lead Status</a></li>
+                        <li><a href="@Url.Action("CompanySoldAndClosedJobs", "Reports")">Company Sold And Closed Jobs</a></li>
+                        <li><a href="@Url.Action("CompanySoldJobsOnly", "Reports")">Company Sold Jobs Only</a></li>
+                        <li><a href="@Url.Action("DesignerActiveLeadReport", "Reports")">Designer Active Lead Report</a></li>
+                        <li><a href="@Url.Action("DesignerYearToDateReport", "Reports")">Designer Year To Date Report</a></li>
+                        <li><a href="@Url.Action("LocationStatisticsOfSoldJobs", "Reports")">Location Statistics Of Sold Jobs</a></li>
+                        <li><a href="@Url.Action("AccountingSoldJobReport", "Reports")">Accounting Sold Job Report</a></li>
+                        <li><a href="@Url.Action("CompanyYearToDateByDesignerReport", "Reports")">Company Year To Date By Designer Report</a></li>
+                        <li><a href="@Url.Action("MonthlySalesReport", "Reports")">Monthly Sales Report</a></li>
+                        <li><a href="@Url.Action("AllOpenLeads", "Reports")">All Open Leads</a></li>
+                        <li><a href="@Url.Action("CompanySalesDashboard", "Reports")">Company Sales</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown" id="tools">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin Tools <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        @*<li><a href="@Url.Action("StateTax", "Log")">State Tax</a></li>*@
+                        @*<li><a href="@Url.Action("Add", "StateTax")">Add State Tax</a></li>*@
+                        <li><a href="@Url.Action("ListTax", "StateTax")">State Tax</a></li>
+                        @*<li><a href="@Url.Action("CountyTax", "Log")">County Tax(Old)</a></li>*@
+                        <li><a href="@Url.Action("CountyTaxNew", "CountyTax")">County Tax</a></li>
+                        @*<li><a href="@Url.Action("CityTax", "Log")">Old City Tax</a></li>*@
+                        <li><a href="@Url.Action("CityTaxNew", "CityTax")">City Tax</a></li>
+                        @*<li><a href="@Url.Action("BOTax", "Log")">B&O Tax (Old)</a></li>*@
+                        <li><a href="@Url.Action("BO", "BOTax")">B&O Tax</a></li>
+                        @*<li><a href="@Url.Action("LaborCost", "Log")">Labor-Cost</a></li>*@
+                        <li><a href="@Url.Action("ListLaborCost", "LaborCost")">Installation Cost</a></li>
+                        
+                        <li><a href="@Url.Action("Index", "Log")">View Log </a></li>
+                        <li><a href="@Url.Action("ListEmp", "Emp")">View Employees</a></li>
+                        <li><a href="@Url.Action("Add", "Emp")">Add Employee</a></li>
+                    </ul>
+                </li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+</nav>

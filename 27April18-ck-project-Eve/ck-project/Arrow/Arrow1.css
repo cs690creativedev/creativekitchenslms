@@ -1,0 +1,12 @@
+﻿.fa {
+    font-size: 25px;
+    margin-right:25px;
+    cursor: pointer;
+    user-select: none;
+   
+}
+
+.fa:hover {
+  color: darkblue;
+}
+

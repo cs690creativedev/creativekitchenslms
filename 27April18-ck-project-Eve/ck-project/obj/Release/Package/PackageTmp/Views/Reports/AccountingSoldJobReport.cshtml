@@ -1,0 +1,150 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using ck_project.Models;
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @if (ViewBag.m != null)
+    {
+        <script type="text/javascript">
+ $(document).ready(function () {
+     toastr.success('@ViewBag.m');
+
+
+ });
+
+        </script>
+    }
+}
+
+
+@{
+    if (HttpContext.Current.User.IsInRole("Administrator"))
+    {
+        @Html.Partial("_AdminMenu")
+    }
+    else if (HttpContext.Current.User.IsInRole("Branch Manager"))
+    {
+        @Html.Partial("_BranchManager")
+    }
+    else
+    {
+        @Html.Partial("_MainMenu")
+    }
+}
+
+<div class="container">
+
+    <table>
+        <tr>
+            <td style="width:435px"><h2>Accounting Sold Job Report</h2></td>
+            <td style="width:680px" align="right"></td>
+        </tr>
+        <tr>
+            @*<td>This page displays the report of Company Lead Source Analysis.</td>*@
+    </table>
+
+    @using (Html.BeginForm("AccountingSoldJobReport", "Reports", FormMethod.Get))
+    {
+        <input type="date" name="search" class="search_box" id="stDt" />
+        <input type="date" name="search1" class="search_box" />
+        @*@Html.TextBox("search", ViewData.TemplateInfo.FormattedModelValue, new { placeholder = "Start Date" });*@
+        @*@Html.TextBox("search1", ViewData.TemplateInfo.FormattedModelValue, new { placeholder = "End Date" });*@
+        <input type="submit" value="Search" />
+
+
+    }
+
+    <br />
+    <div align="center">
+        @if (Session["dtFrom"] != null)
+        {
+            <label id="lblfrom">From : @Session["dtFrom"] To : @Session["dtTo"]</label>
+        }
+    </div>
+    <br />
+    <table class="table table-striped">
+        <thead class="mdb-color darken-3">
+            <tr>
+                <th>
+                    Designer
+                </th>
+                <th>
+                    Sold Date
+                </th>
+                <th>
+                    Responsible Party
+                </th>
+                <th>
+                    Project Name
+                </th>
+                <th>
+                    Delivery Status
+                </th>
+                <th>
+                    Installed Total
+                </th>
+                <th>
+                    Delivery Total Before Taxes
+                </th>
+              
+
+                <th></th>
+            </tr>
+        </thead>
+
+        @if (Model.CLSA13.Count == 0)
+            {
+            <tr>
+                <td colspan="6"> Sorry, There are no Records
+                <td>
+            </tr>
+        }
+        else
+        {
+
+            foreach (CLSA13 item in Model.CLSA13)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Designer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sold_Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Responsible_Party)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Project_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Delivery_Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Installed_Total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Delivered_Total_Before_Taxes)
+                    </td>
+                 
+
+
+                </tr>
+            }
+        }
+    </table>
+
+
+
+    <div class="row top-buffer">
+        <div class="col-md-2 column" align="center">
+            <input type="button" value="PDF" onclick="location.href='@Url.Action("Convert13", "Print", new { documentName = "CLSA13", str = "View13Print"})'" class="btn btn-default" id="printBtn" />
+            <input type="button" value="Excel" onclick="location.href='@Url.Action("Convert13Excel", "Print", new { documentName = "CLSA13", str = "View13Print"})'" class="btn btn-default" id="printBtn" />
+        </div>
+    </div>
+
+
+</div>
+
+

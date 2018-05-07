@@ -1,0 +1,92 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<ck_project.Models.CLSA8>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@using (Html.BeginForm("CompanySoldAndClosedJobs", "Reports", FormMethod.Get))
+{
+
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    @*<meta name="viewport" content="initial-scale=1.0">*@
+    <title>Sale Contract Management System</title>
+    <link href="http://leadmanagealpha.apphb.com/Content/bootstrap.sandstone.css" rel="stylesheet" type="text/css" />
+    <link href="http://leadmanagealpha.apphb.com/Content/Print.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="pic2" align="center"><img src="http://leadmanagealpha.apphb.com/Content/Images/proposal_pic2.png" /></div>
+
+    <table class="container" style="width:300px;padding:40px" align="right">
+        <tr>
+            <td style="padding:5px 10px;border:1px solid #666">
+                <label>From : </label>
+                @Session["dtFrom"]
+            </td>
+            <td style="padding:5px 10px;border:1px solid #666">
+                <label>To : </label>
+                @Session["dtTo"]
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <div class="header"><h2>COMPANY SOLD AND CLOSED JOBS</h2></div>
+
+    <div>
+        <table class="table table-striped">
+            <thead class="mdb-color darken-3">
+                <tr>
+                    <th>
+                        Responsibility Party
+                    </th>
+                    <th>
+                        Designer
+                    </th>
+                    <th>
+                        Mailing Address
+                    </th>
+                    <th>
+                        City
+                    </th>
+                    <th>
+                        State
+                    </th>
+
+                    <th>
+                        Zipcode
+                    </th>
+                    <th>
+                        Primary Phone
+                    </th>
+                    <th>
+                        Primary Email
+                    </th>
+
+                </tr>
+            </thead>
+
+            @{
+                foreach (var prod in Model)
+                {
+                    <tr>
+                        <td>@prod.Responsible_Party_Or_Lead_Creator</td>
+                        <td>@prod.Designer.ToString()</td>
+                        <td>@prod.Mailing_Address.ToString()</td>
+                        <td>@prod.City.ToString()</td>
+                        <td>@prod.State.ToString()</td>
+                        <td>@prod.ZipCode.ToString()</td>
+                        <td>@prod.Primary_Phone.ToString()</td>
+                        <td>@prod.Primary_Email.ToString()</td>
+                        
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</body>
+</html>

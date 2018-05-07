@@ -1,0 +1,238 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using ck_project.Models;
+@model IEnumerable<ck_project.Models.CLSA11>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @if (ViewBag.m != null)
+    {
+        <script type="text/javascript">
+ $(document).ready(function () {
+     toastr.success('@ViewBag.m');
+
+
+ });
+
+        </script>
+    }
+}
+
+<!DOCTYPE html>
+@using (Html.BeginForm("DesignerYearToDateReport", "Reports", FormMethod.Get))
+{
+
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    @*<meta name="viewport" content="initial-scale=1.0">*@
+    <title>Sale Contract Management System</title>
+    <link href="http://leadmanagealpha.apphb.com/Content/bootstrap.sandstone.css" rel="stylesheet" type="text/css" />
+    <link href="http://leadmanagealpha.apphb.com/Content/Print.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .table1 {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+            font-family: 'Nanum Gothic', sans-serif;
+            font-weight: normal;
+        }
+
+            .table1 th, .table1 td {
+                text-align: center;
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            .table1 tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+            .tableWidth{
+                width:22%;margin-right:20px; float:left
+            }
+            .tableWidth h5{
+                width:90%;font-size:11px; float:left
+            }
+    </style>
+</head>
+<body>
+   
+ 
+    <div class="">
+
+        <div class="pic2" align="center"><img src="http://leadmanagealpha.apphb.com/Content/Images/proposal_pic2.png" /></div>
+
+        <table class="container" style="width:150px;padding:40px" align="right">
+            <tr>
+                <td style="padding:5px 10px;border:1px solid #666">
+                    <label>As On : </label>
+                    @Session["dtTo"]
+                </td>
+            </tr>
+        </table>
+
+        <br />
+        <div class="header"><h2>DESIGNER YEAR TO DATE REPORT</h2></div>
+
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="col-lg-3">
+                   
+                    <table cellspacing="0" id="ledger" class="table1 tableWidth">
+                        <thead>
+                            <tr>
+                                <th colspan="3">YTD Projects Sold</th>
+
+                            </tr>
+
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th rowspan="2">Type</th>
+                                <th data-priority="1">Qty</th>
+                                <th data-priority="3">Total Amount</th>
+                            </tr>
+
+                        </thead>
+                        @foreach (var item in Model)
+                       {
+                          if (item.Total1 == 1)
+                         {
+                                <tr>
+                                    <td>
+                                        @item.Type
+
+                                    </td>
+                                    <td>
+                                        @item.QTY
+
+                                    </td>
+                                    <td>
+                                        @item.Total_Amount
+
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+
+
+                <div class="col-lg-3">
+                    <table cellspacing="0" id="ledger" class="table1 tableWidth">
+                        <thead>
+                            <tr>
+                                <th colspan="3">YTD Projects Category By Category</th>
+
+                            </tr>
+
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th rowspan="2">Type</th>
+                                <th data-priority="1">Qty</th>
+                                <th data-priority="3">Total Amount</th>
+                            </tr>
+                        </thead>
+                       @foreach (var item in Model)
+            {
+                if (item.Total2 == 2)
+                {
+                            <tr>
+                                <td>
+                                    @item.Type2
+                                </td>
+                                <td>
+                                    @item.QTY2
+                                </td>
+                                <td>
+                                    @item.Total_Amount2
+                                </td>
+                            </tr>
+                           }
+                       }
+                    </table>
+                </div>
+                <div class="col-lg-3">
+                    <table cellspacing="0" id="ledger" class="table1 tableWidth">
+                        <thead>
+                            <tr>
+                                <th colspan="3">YTD Project QTY Status</th>
+
+                            </tr>
+
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th rowspan="2">Type</th>
+                                <th data-priority="1">Qty</th>
+                        
+                            </tr>
+
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+                            if (item.Total3 == 3)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.Status
+                                    </td>
+                                    <td>
+                                        @item.QTY3
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div><!--column-->
+            <div class="col-lg-3">
+
+                <table cellspacing="0" id="ledger" class="table1 tableWidth">
+                    <thead>
+                        <tr>
+                            <th colspan="3">YTD Statistics</th>
+
+                        </tr>
+
+                    </thead>
+                    <thead>
+                        <tr>
+
+                            <th data-priority="1">YTD Statistics</th>
+                            <th data-priority="3">Numerics</th>
+                            
+
+                        </tr>
+
+                    </thead>
+                    @foreach (var item in Model)
+            {
+                if (item.Total4 == 4)
+                {
+                            <tr>
+                                <td>
+                                    @item.YTD_Statistics
+                                </td>
+                                <td>
+                                    @item.Numerics
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </table>
+
+
+            </div><!-- col-12-- end -->
+        </div><!-- Row end -->
+    </div>
+</div>
+</body>
+</html>

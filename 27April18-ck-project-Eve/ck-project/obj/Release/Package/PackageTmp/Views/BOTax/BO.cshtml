@@ -1,0 +1,129 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<ck_project.tax>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @if (ViewBag.m != null)
+    {
+        <script type="text/javascript">
+ $(document).ready(function () {
+     toastr.success('@ViewBag.m');
+     @ViewBag.m = null
+ });
+
+        </script>
+    }
+}
+@{
+    if (HttpContext.Current.User.IsInRole("Administrator"))
+    {
+        @Html.Partial("_AdminMenu")
+    }
+    else
+
+    {
+        @Html.Partial("_MainMenu")
+    }
+}
+<div class="container">
+    <table>
+        <tr>
+            <td style="width:100%"><h3>B&O Tax</h3></td>
+        </tr>
+    </table>
+    <table class="table table-striped">
+        <thead class="mdb-color darken-3">
+            <tr>
+                <th>
+                    State <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> City
+                </th>
+            </tr>
+        </thead>
+
+        <tr>
+            <td>
+                @using (Html.BeginForm("BO", "BOTax", FormMethod.Get))
+                {
+
+                    @* @Html.DropDownList("type", (IEnumerable<SelectListItem>)ViewBag.lead_type, new { @class = "search_box", onchange = "this.form.submit()" })
+                    *@
+
+                    @Html.DropDownList("type", (IEnumerable<SelectListItem>)ViewBag.lead_type, new { @class = "search_box", onchange = "this.form.submit();" })
+
+                    <span> &nbsp;&nbsp;</span> @Html.DropDownList("type1", (IEnumerable<SelectListItem>)ViewBag.lead_type_city, new { @class = "search_box", onchange = "this.form.submit();" })
+                    <br />
+                    <div style="text-align:right">
+                        @Html.ActionLink("Add B&O Tax", "Add")
+                    </div>
+                }
+            </td>
+        </tr>
+    </table>
+
+    <table class="table table-striped">
+        <thead class="mdb-color darken-3">
+            <tr>
+                <th>
+                    State
+                </th>
+
+                <th>
+                    Tax Value
+                </th>
+                <th>
+                    City
+                </th>
+                <th>
+                    Start Date
+                </th>
+                <th>
+                    End Date
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="6"> Sorry, There are no Taxes
+                <td>
+            </tr>
+        }
+        else
+        {
+
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.state)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tax_value)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.city)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.start_date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.end_date)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.tax_number }) |
+                        @Html.ActionLink("Update", "Update", new { id = item.tax_number }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.tax_number },
+            new { onclick = "return confirm('Are you sure you wish to delete the Tax ?');" })
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+    @Html.PagedListPager(Model, page => Url.Action("BO",
+    new { page, search = Request.QueryString["Search"], Type = Request.QueryString["type"], Start = Request.QueryString["start"], end = Request.QueryString["end"] }), new PagedListRenderOptions() { DisplayPageCountAndCurrentLocation = true })
+
+</div>

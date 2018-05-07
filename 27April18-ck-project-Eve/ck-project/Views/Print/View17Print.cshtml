@@ -1,0 +1,231 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using ck_project.Models;
+@model IEnumerable<ck_project.Models.CLSA17>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @if (ViewBag.m != null)
+    {
+        <script type="text/javascript">
+ $(document).ready(function () {
+     toastr.success('@ViewBag.m');
+
+
+ });
+
+        </script>
+    }
+}
+
+<!DOCTYPE html>
+@using (Html.BeginForm("CompanySalesDashboard", "Reports", FormMethod.Get))
+{
+
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    @*<meta name="viewport" content="initial-scale=1.0">*@
+    <title>Sale Contract Management System</title>
+    <link href="http://leadmanagealpha.apphb.com/Content/bootstrap.sandstone.css" rel="stylesheet" type="text/css" />
+    <link href="http://leadmanagealpha.apphb.com/Content/Print.css" rel="stylesheet" type="text/css" />
+    <style>
+        .table1 {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+            font-family: 'Nanum Gothic', sans-serif;
+            font-weight: normal;
+        }
+
+            .table1 th, .table1 td {
+                text-align: center;
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            .table1 tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+        .tableWidth {
+            width: 22%;
+            margin-right: 20px;
+            float: left;
+        }
+
+            .tableWidth h5 {
+                width: 90%;
+                font-size: 11px;
+                float: left;
+            }
+    </style>
+</head>
+<body>
+    <div class="pic2" align="center"><img src="http://leadmanagealpha.apphb.com/Content/Images/proposal_pic2.png" /></div>
+
+    <table class="container" style="width:150px;padding:40px" align="right">
+        <tr>
+            <td style="padding:5px 10px;border:1px solid #666">
+                <label>As On : </label>
+                @Session["dtTo"]
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <div class="header"><h2>COMPANY SALES </h2></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="col-lg-3">
+                <table cellspacing="0" id="ledger" class="table1 tableWidth">
+                    <thead>
+                        <tr>
+                            <th>
+                                Branch Name
+                            </th>
+                            <th>
+                                YTD Total Sales
+                            </th>
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in Model)
+            {
+                if (item.Total1 == 1)
+                {
+                <tr>
+                    <td>
+                        @item.Branch_Name
+
+                    </td>
+                    <td>
+                        @item.YTD_Total_Sales
+
+                    </td>
+
+                </tr>
+                }
+            }
+
+                </table>
+                </div>
+            
+            <div class="col-lg-3">
+                <table cellspacing="0" id="ledger" class="table1 tableWidth">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                HUNTINGTON
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Month
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in Model)
+            {
+                if (item.Total2 == 2)
+                {
+                    <tr>
+                        <td>
+                            @item.Month
+                        </td>
+                        <td>
+                            @item.Price
+                        </td>
+
+                    </tr>
+                }
+            }
+
+                </table>
+                </div>
+            <div class="col-lg-3">
+                <table cellspacing="0" id="ledger" class="table1 tableWidth">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                CHARLESTON
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Month
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in Model)
+            {
+                if (item.Total3 == 3)
+                {
+                    <tr>
+                        <td>
+                            @item.Month3
+                        </td>
+                        <td>
+                            @item.Price3
+                        </td>
+
+                    </tr>
+                        }
+                    }
+
+                </table>
+                </div>
+            
+            <div class="col-lg-3">
+                <table cellspacing="0" id="ledger" class="table1 tableWidth">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                LEWISBURG
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Month
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in Model)
+            {
+                if (item.Total4 == 4)
+                {
+                    <tr>
+                        <td>
+                            @item.Month4
+                        </td>
+                        <td>
+                            @item.Price4
+                        </td>
+
+                    </tr>
+                        }
+                    }
+
+                </table>
+                </div>
+            </div>
+</div>
+
+</body>
+</html>
